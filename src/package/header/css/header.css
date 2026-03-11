@@ -1,0 +1,65 @@
+.header{
+    height: 90vh;
+    width: 100vw;
+    background-color: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header img{
+     width: clamp(30px, 30vw, 450px);
+}
+
+.header_container{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 80vw;
+}
+
+
+svg {
+    width: 100%;
+    height: auto;
+    opacity: 0; /* Commence invisible */
+    animation: svg 1s ease-in-out 1s forwards; 
+  }
+  
+  @keyframes svg {
+    from {
+      opacity: 0; /* Début de l'animation */
+    }
+    to {
+      opacity: 1; /* Fin de l'animation (visible) */
+    }
+  }
+path {
+    fill: none;
+    stroke: #f4f4f4;
+    stroke-width: 10;
+    stroke-linecap: round;
+}
+
+.middle{
+   
+   
+    display: flex;
+    flex-direction: column; /* Aligne les enfants en colonne */
+    justify-content: space-between;
+    align-items: center;
+    height: 35vw;
+    width: 100%;
+    margin-top: -12vw;
+    
+    
+}
+
+.header_title{
+     font-size: 4vw;
+     font-family: "Vandalust";
+     width: max-content;
+      position: absolute;
+    margin-top: 25vw;
+
+}

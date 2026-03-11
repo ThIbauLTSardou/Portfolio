@@ -1,0 +1,67 @@
+
+.section_profil {
+  height: 200vh;
+  width: 100vw;
+  background-color: var(--black);
+  display: flex;
+  position: sticky;
+  top: 20vh;
+}
+
+
+
+
+
+.profile_title{
+    margin-left: 10vw;
+}
+.profile_title h1{
+   font-size: clamp(.5rem, 10vw, 15rem);
+    font-weight: bolder;
+    color: var(--black);
+}
+.profile_title h3{
+    font-size: clamp(2rem, 6vw, 11rem);
+    color: var(--yellow);
+}
+
+.profile_left_side{
+   width: 50%;
+    height: 50%;
+}
+
+/****** right *******/
+
+.profile_right_side{
+     width: 50%;
+     height: 50%;
+}
+
+.right_top_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pp_container{
+    width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #facc15 0%, #fef9c3 50%, #fffbd3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+       
+  
+}
+
+.profile_right_side img{
+    height: 250px;
+}
+
+/*.pp_wrapper {
+  width: 200px;
+  height: 200px; 
+  overflow: hidden; 
+  background-color: red;
+}*/

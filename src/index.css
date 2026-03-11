@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Vandalust';
+    src: url(../public/font/Vandalust.ttf);
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --yellow : #FED73C;
+  --black : #1b1502;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
