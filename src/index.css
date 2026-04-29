@@ -1,7 +1,9 @@
 @font-face {
     font-family: 'Vandalust';
-    src: url(../public/font/Vandalust.ttf);
+    src: url(../font/Vandalust.ttf);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -12,6 +14,10 @@
 *{
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: var(--yellow);
 }
 
 html {

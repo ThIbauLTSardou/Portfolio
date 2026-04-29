@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import pp from "../../../../public/pp.png";
+const pp = "/pp.png";
 
 import { Vinyle } from "../index";
 
@@ -11,19 +11,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Profile() {
   useEffect(() => {
-    // Animation section profil
     gsap.fromTo(
       ".left_title",
+      { y: 100, opacity: 0 },
       {
-        y: 100, // Part de 100px plus bas
-        opacity: 0,
-      },
-      {
-        y: -180, // Arrive à la position souhaitée (ton ancien style CSS)
+        y: -180,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
-          start: "top 80%", // Démarre quand le haut de la section est à 80% du bas de l'écran
+          start: "top 80%",
           end: "top 40%",
           scrub: 1,
         },
@@ -32,22 +28,27 @@ export function Profile() {
 
     gsap.fromTo(
       ".pp_container",
+      { y: 100, opacity: 0 },
       {
-        y: 100, // Part de 100px plus bas
-        opacity: 0,
-      },
-      {
-        y: -120, // Arrive à la position souhaitée (ton ancien style CSS)
+        y: -120,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
-          start: "top 80%", // Démarre quand le haut de la section est à 80% du bas de l'écran
+          start: "top 80%",
           end: "top 40%",
           scrub: 1,
         },
       },
     );
-  });
+
+    ScrollTrigger.create({
+      trigger: ".section_profil",
+      start: "top 20%",
+      end: "+=280%",
+      pin: true,
+      pinSpacing: true,
+    });
+  }, []);
 
   return (
    
@@ -55,13 +56,13 @@ export function Profile() {
         <div className="profile_left_side">
           <div className="profile_title left_title">
             <h1>Salut !</h1>
-            <h3>Moi c'est Tybo</h3>
+            <h3>Moi c'est <span className="tybo_name">Tybo</span></h3>
           </div>
         </div>
         <div className="profile_right_side">
           <div className="right_top_container">
             <div className="pp_container">
-              <img src={pp} alt="Photo de profil" />
+              <img src={pp} alt="Photo de profil" className="pp_img" />
             </div>
           </div>
         </div>

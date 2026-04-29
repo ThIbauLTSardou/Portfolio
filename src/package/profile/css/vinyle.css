@@ -6,70 +6,278 @@
         }
 
         /* Styles des sections de texte */
-        .text-display-area {
+        .vinyl-content-display {
           position: fixed;
-          top: 35%;
-          left: 50%;
+          top: 30%;
+          left: 25%;
           transform: translate(-50%, -50%);
-          text-align: center;
           z-index: 10;
-          width: 80%;
-          max-width: 600px;
+          width: 35%;
           pointer-events: none;
         }
 
-        .section-wrapper {
+        .vinyl-section {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
-          transition: all 0.7s ease-in-out;
           opacity: 0;
-          transform: translateY(2rem) scale(0.95);
+          transform: translateY(1.5rem);
+          transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .section-wrapper.active {
+        .vinyl-section.active {
           opacity: 1;
-          transform: translateY(0) scale(1);
+          transform: translateY(0);
         }
 
-        .title {
-          color: #facc15;
-          font-size: 3rem;
+        .vinyl-section-title {
+          font-size: clamp(1.2rem, 2.5vw, 2.5rem);
           font-weight: 900;
+          color: var(--yellow);
           text-transform: uppercase;
-          margin-bottom: 1rem;
-          filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.4));
+          letter-spacing: 0.15em;
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
         }
 
-        .description {
+        .vinyl-section-title::before {
+          content: '';
+          display: inline-block;
+          width: 2.5rem;
+          height: 3px;
+          background: var(--yellow);
+          flex-shrink: 0;
+        }
+
+        .vinyl-section-body {
           color: white;
-          font-size: 1.25rem;
-          line-height: 1.625;
-          background-color: rgba(24, 24, 27, 0.8);
-          padding: 1.5rem;
-          border-radius: 1rem;
-          backdrop-filter: blur(4px);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+          font-size: 1rem;
+          line-height: 1.7;
         }
 
-        .badge {
-          padding: 0.25rem 0.75rem;
-          background-color: rgba(250, 204, 21, 0.2);
+        /* ── TIMELINE (Parcours) ── */
+        .timeline {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          position: relative;
+          padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+          content: '';
+          position: absolute;
+          left: 0.35rem;
+          top: 0.5rem;
+          bottom: 0.5rem;
+          width: 2px;
+          background: linear-gradient(to bottom, var(--yellow), transparent);
+        }
+
+        .timeline-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+          position: relative;
+          padding-bottom: 1.5rem;
+        }
+
+        .timeline-item:last-child {
+          padding-bottom: 0;
+        }
+
+        .timeline-dot {
+          position: absolute;
+          left: -1.18rem;
+          top: 0.35rem;
+          width: 0.65rem;
+          height: 0.65rem;
+          border-radius: 50%;
+          background: var(--yellow);
+          box-shadow: 0 0 10px var(--yellow), 0 0 20px rgba(254, 215, 60, 0.4);
+          flex-shrink: 0;
+        }
+
+        .timeline-content {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+        }
+
+        .timeline-year {
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          color: var(--yellow);
+          text-transform: uppercase;
+          opacity: 0.7;
+        }
+
+        .timeline-content strong {
+          font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+          font-weight: 800;
+          color: white;
+        }
+
+        .timeline-sub {
+          font-size: 0.85rem;
+          color: rgba(255,255,255,0.5);
+        }
+
+        .timeline-line {
+          display: none;
+        }
+
+        /* ── OBJECTIFS ── */
+        .objectifs-content {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .objectif-word {
+          position: relative;
+          display: inline-block;
+          line-height: 1;
+        }
+
+        .word-outline {
+          font-size: clamp(3rem, 6vw, 6rem);
+          font-weight: 900;
+          color: transparent;
+          -webkit-text-stroke: 2px var(--yellow);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          display: block;
+          opacity: 0.25;
+          user-select: none;
+        }
+
+        .word-fill {
+          position: absolute;
+          inset: 0;
+          font-size: clamp(3rem, 6vw, 6rem);
+          font-weight: 900;
+          color: var(--yellow);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          clip-path: inset(0 60% 0 0);
+          text-shadow: 0 0 40px rgba(254, 215, 60, 0.6);
+          animation: reveal-fill 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes reveal-fill {
+          from { clip-path: inset(0 60% 0 0); }
+          to   { clip-path: inset(0 0% 0 0); }
+        }
+
+        .objectif-desc {
+          font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+          color: rgba(255,255,255,0.8);
+          line-height: 1.7;
+          border-left: 3px solid var(--yellow);
+          padding-left: 1rem;
+        }
+
+        .objectif-desc em {
+          font-style: normal;
+          color: var(--yellow);
+          font-weight: 700;
+        }
+
+        .objectif-tags {
+          display: flex;
+          gap: 0.6rem;
+          flex-wrap: wrap;
+        }
+
+        .otag {
+          padding: 0.3rem 0.9rem;
+          border: 1.5px solid rgba(254, 215, 60, 0.4);
           border-radius: 9999px;
-          color: #facc15;
-          font-size: 0.875rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--yellow);
+          backdrop-filter: blur(8px);
+          background: rgba(254, 215, 60, 0.05);
+        }
+
+        /* ── PASSIONS ── */
+        .passions-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .passion-card {
+          display: flex;
+          align-items: center;
+          gap: 1.25rem;
+          padding: 1rem 1.25rem;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 0.75rem;
+          backdrop-filter: blur(10px);
+          transition: border-color 0.3s ease, background 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .passion-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(254,215,60,0.06) 0%, transparent 60%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .passion-card:hover::before {
+          opacity: 1;
+        }
+
+        .passion-icon {
+          font-size: 1.75rem;
+          flex-shrink: 0;
+          filter: drop-shadow(0 0 8px rgba(254,215,60,0.5));
+        }
+
+        .passion-label {
+          font-size: clamp(1rem, 1.8vw, 1.4rem);
+          font-weight: 800;
+          color: white;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
         }
 
         /* Styles du Vinyle */
         .vinyl-wrapper {
           position: fixed;
           bottom: 0;
-          right: 0;
+          left: 65%;
           z-index: 50;
-          transform: translateX(100%); /* Départ hors écran */
           will-change: transform;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .vinyl-label-top,
+        .vinyl-label-bottom {
+          color: var(--yellow);
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-align: center;
+          padding: 0.4rem 0;
+          min-height: 1.5rem;
+          transition: opacity 0.4s ease;
         }
 
         .vinyl-disk {
@@ -83,16 +291,10 @@
           justify-content: center;
           box-shadow: 0 -10px 60px rgba(0, 0, 0, 0.6);
           overflow: hidden;
-          transform: translateY(50%);
         }
 
         .vinyl-shine {
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 40%, rgba(0,0,0,0.3) 100%);
-          z-index: 10;
-          pointer-events: none;
+          display: none;
         }
 
         .groove {
@@ -101,18 +303,9 @@
           border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .groove-outer { 
-          width: 90%; height: 90%; 
-          background: repeating-radial-gradient(circle, transparent, transparent 3px, rgba(0,0,0,0.03) 4px);
-        }
-        .groove-mid { 
-          width: 65%; height: 65%; 
-          background: repeating-radial-gradient(circle, transparent, transparent 2px, rgba(0,0,0,0.05) 3px);
-        }
-        .groove-inner { 
-          width: 40%; height: 40%; 
-          background: repeating-radial-gradient(circle, transparent, transparent 4px, rgba(0,0,0,0.04) 5px);
-        }
+        .groove-outer { width: 90%; height: 90%; }
+        .groove-mid { width: 65%; height: 65%; }
+        .groove-inner { width: 40%; height: 40%; }
 
         .track-svg {
           position: absolute;

@@ -1,11 +1,13 @@
 
 .section_profil {
-  height: 200vh;
+  height: 100vh;
   width: 100vw;
   background-color: var(--black);
   display: flex;
-  position: sticky;
-  top: 20vh;
+}
+
+.section_profil + div[style] {
+  background-color: var(--yellow) !important;
 }
 
 
@@ -23,6 +25,10 @@
 .profile_title h3{
     font-size: clamp(2rem, 6vw, 11rem);
     color: var(--yellow);
+}
+
+.tybo_name {
+    font-family: 'Kablammo', system-ui;
 }
 
 .profile_left_side{
@@ -43,20 +49,24 @@
     justify-content: center;
 }
 
-.pp_container{
-    width: 200px;
-  height: 200px;
+.pp_container {
+  width: clamp(140px, 16vw, 260px);
+  height: clamp(140px, 16vw, 260px);
   border-radius: 50%;
-  background: radial-gradient(circle, #facc15 0%, #fef9c3 50%, #fffbd3 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-       
-  
+  background: radial-gradient(circle at 50% 40%, #ffffff 20%, var(--yellow) 100%);
+  box-shadow: 0 0 0 6px white, 0 0 0 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
 }
 
-.profile_right_side img{
-    height: 250px;
+.pp_img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 105%;
+  width: auto;
 }
 
 /*.pp_wrapper {

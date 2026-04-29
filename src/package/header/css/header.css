@@ -1,3 +1,57 @@
+/* Sidebar sociale */
+.header_sidebar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--black);
+  padding: 1rem 0.65rem;
+  border-radius: 12px 0 0 12px;
+  z-index: 10;
+}
+
+.header_sidebar_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--yellow);
+  transition: opacity 0.2s ease;
+}
+
+.header_sidebar_link:hover {
+  opacity: 0.6;
+}
+
+.header_sidebar_link svg {
+  width: 22px;
+  height: 22px;
+}
+
+.curtain_left,
+.curtain_right {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: var(--black);
+    z-index: 1000;
+}
+
+.curtain_left {
+    left: 0;
+}
+
+.curtain_right {
+    right: 0;
+}
+
 .header{
     height: 90vh;
     width: 100vw;
@@ -5,6 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .header img{
@@ -19,22 +74,11 @@
 }
 
 
-svg {
+.middle svg {
     width: 100%;
     height: auto;
-    opacity: 0; /* Commence invisible */
-    animation: svg 1s ease-in-out 1s forwards; 
-  }
-  
-  @keyframes svg {
-    from {
-      opacity: 0; /* Début de l'animation */
-    }
-    to {
-      opacity: 1; /* Fin de l'animation (visible) */
-    }
-  }
-path {
+}
+.middle path {
     fill: none;
     stroke: #f4f4f4;
     stroke-width: 10;
@@ -42,24 +86,25 @@ path {
 }
 
 .middle{
-   
-   
     display: flex;
-    flex-direction: column; /* Aligne les enfants en colonne */
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: 35vw;
     width: 100%;
     margin-top: -12vw;
-    
-    
 }
 
 .header_title{
-     font-size: 4vw;
+     font-size: 3vw;
      font-family: "Vandalust";
      width: max-content;
-      position: absolute;
-    margin-top: 25vw;
+     position: absolute;
+     margin-top: 25vw;
+}
 
+@supports (-webkit-hyphens: auto) {
+    .header_title {
+        font-size: 4vw;
+    }
 }
