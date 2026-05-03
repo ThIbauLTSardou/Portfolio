@@ -9,7 +9,7 @@
   flex-direction: column;
   position: sticky;
   top: 0px;
-  z-index: 1;
+  z-index: 0;
   overflow-x: hidden;
 }
 
@@ -178,44 +178,39 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    padding: 30px 40px;
+  }
+  .title h1 {
+    font-size: 12vw;
+  }
   .liste_projet {
     grid-template-columns: 1fr;
+    padding: 2rem 0 0;
   }
-
-  .img_projet {
-    width: 100%;
-  }
-
   .projet {
-    width: 90%;
+    width: 88%;
   }
-
   .projet h2 {
-    font-size: 3.2vw;
+    font-size: 5.5vw;
   }
-
   .projet p {
-    font-size: 1.8vw;
+    font-size: 3.5vw;
   }
-
   .projet_secondaire .content_secondaire {
     padding-top: 25px;
     padding-bottom: 25px;
   }
-
   .projet_secondaire .content_secondaire h2 {
-    font-size: 3.2vw;
+    font-size: 5vw;
   }
-
   .projet_secondaire .content_secondaire a {
     display: block;
   }
-
   .projet_secondaire .content_secondaire p {
-    font-size: 2.1vw;
-    margin-top: 10px;
+    font-size: 3.5vw;
+    margin-top: 6px;
   }
-
   .projet_secondaire_categorie {
     display: none;
   }

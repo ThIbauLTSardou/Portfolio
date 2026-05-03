@@ -11,11 +11,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Profile() {
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     gsap.fromTo(
       ".left_title",
       { y: 100, opacity: 0 },
       {
-        y: -180,
+        y: isMobile ? -60 : -180,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
@@ -30,7 +32,7 @@ export function Profile() {
       ".pp_container",
       { y: 100, opacity: 0 },
       {
-        y: -120,
+        y: isMobile ? -40 : -120,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
@@ -44,7 +46,7 @@ export function Profile() {
     ScrollTrigger.create({
       trigger: ".section_profil",
       start: "top 20%",
-      end: "+=280%",
+      end: isMobile ? "+=150%" : "+=280%",
       pin: true,
       pinSpacing: true,
     });

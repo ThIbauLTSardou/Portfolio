@@ -132,6 +132,7 @@ export function Header() {
 
             <div className="header_title">
               <h1>Thibault Sardou</h1>
+              <p className="header_subtitle">Développeur Frontend Junior</p>
             </div>
           </div>
           <img className="casque_droit" src={casque_droit} alt="Casque droit" />

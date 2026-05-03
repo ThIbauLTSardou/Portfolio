@@ -73,7 +73,6 @@
    width: 80vw;
 }
 
-
 .middle svg {
     width: 100%;
     height: auto;
@@ -96,15 +95,58 @@
 }
 
 .header_title{
-     font-size: 3vw;
+     font-size: clamp(1.2rem, 3vw, 4rem);
      font-family: "Vandalust";
      width: max-content;
      position: absolute;
      margin-top: 25vw;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 0.4rem;
+}
+
+.header_subtitle {
+  font-family: system-ui, sans-serif;
+  font-size: clamp(0.65rem, 1.1vw, 1.1rem);
+  font-weight: 400;
+  color: var(--black);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0;
 }
 
 @supports (-webkit-hyphens: auto) {
     .header_title {
-        font-size: 4vw;
+        font-size: clamp(1.4rem, 4vw, 5rem);
     }
+}
+
+/* ── Sidebar responsive ── */
+@media (max-width: 768px) {
+  .header_sidebar {
+    display: none;
+  }
+}
+
+/* ── Header mobile ── */
+@media (max-width: 600px) {
+  .header_container {
+    width: 95vw;
+  }
+  .header img {
+    width: clamp(20px, 22vw, 120px);
+  }
+  .middle {
+    height: 50vw;
+    margin-top: -18vw;
+  }
+  .header_title {
+    font-size: clamp(1rem, 5vw, 2rem);
+    margin-top: 35vw;
+  }
+  .header_subtitle {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
 }

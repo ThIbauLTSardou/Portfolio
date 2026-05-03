@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+
 @font-face {
     font-family: 'Vandalust';
     src: url(../font/Vandalust.ttf);
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

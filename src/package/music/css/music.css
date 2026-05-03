@@ -1,0 +1,533 @@
+/* ══════════════════════════════════════════
+   MUSIC PLAYER — OVERLAY FULLSCREEN
+══════════════════════════════════════════ */
+
+/* Fond sombre derrière le panel */
+.mp_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 900;
+  cursor: pointer;
+}
+
+/* Panel principal qui monte du bas */
+.mp_panel {
+  position: fixed;
+  inset: 0;
+  z-index: 901;
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  will-change: transform;
+}
+
+/* Fond coloré ambient */
+.mp_panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 55% at 25% 50%,
+    color-mix(in srgb, var(--track-color, #FED73C) 14%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+  transition: background 1.2s ease;
+  z-index: 0;
+}
+
+/* Bouton fermeture */
+.mp_close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.mp_close:hover {
+  background: rgba(255,255,255,0.14);
+  color: white;
+  transform: scale(1.1);
+}
+
+.mp_close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Layout intérieur */
+.mp_inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 4vw;
+  align-items: center;
+  min-height: 100%;
+}
+
+/* ─── LEFT ─── */
+.mp_left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+/* ─── Vinyle + Visualiseur ─── */
+.mp_vinyl_wrap {
+  position: relative;
+  width: clamp(220px, 34vw, 400px);
+  height: clamp(220px, 34vw, 400px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mp_visualizer {
+  position: absolute;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(0.4px);
+}
+
+.mp_disk {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #111;
+  box-shadow:
+    0 0 0 4px #222,
+    0 30px 80px rgba(0,0,0,0.9),
+    inset 0 0 60px rgba(0,0,0,0.6);
+  z-index: 2;
+  overflow: hidden;
+  animation: vinyl-spin 1.8s linear infinite;
+  animation-play-state: paused;
+}
+
+.mp_disk.spinning {
+  animation-play-state: running;
+}
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.mp_disk_grooves {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mp_groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.mp_cover {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  z-index: 3;
+  transition: background-image 0.4s ease;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.mp_center_hole {
+  position: absolute;
+  width: 6%;
+  height: 6%;
+  border-radius: 50%;
+  background: #0d0d0d;
+  z-index: 10;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1), inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* ─── Aiguille ─── */
+.mp_needle_wrap {
+  position: absolute;
+  top: -2%;
+  right: -4%;
+  width: 42%;
+  height: 42%;
+  transform-origin: 90% 10%;
+  transform: rotate(-22deg);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 20;
+}
+
+.mp_needle_wrap.active {
+  transform: rotate(-5deg);
+}
+
+.mp_needle {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  width: 2px;
+  height: 85%;
+  background: linear-gradient(to bottom, #888, #ccc 40%, #888);
+  border-radius: 1px;
+  transform-origin: top center;
+}
+
+.mp_needle_head {
+  position: absolute;
+  top: 0;
+  right: calc(50% - 8px);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #e0e0e0, #555);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+/* ─── Track Info ─── */
+.mp_track_info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.mp_genre {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+}
+
+.mp_title {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.mp_artist {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ─── Progress ─── */
+.mp_progress_wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.mp_time {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.mp_progress {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+}
+
+.mp_progress_fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.1s linear, background 0.4s ease;
+}
+
+.mp_progress_thumb {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+
+/* ─── Contrôles ─── */
+.mp_controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mp_btn_icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.15s ease;
+  padding: 0;
+}
+
+.mp_btn_icon:hover {
+  color: white;
+  transform: scale(1.15);
+}
+
+.mp_btn_icon svg { width: 24px; height: 24px; }
+
+.mp_btn_play {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--c);
+  color: #0d0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px color-mix(in srgb, var(--c) 50%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.mp_btn_play:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 45px color-mix(in srgb, var(--c) 70%, transparent);
+}
+
+.mp_btn_play svg { width: 28px; height: 28px; }
+
+/* ─── Volume ─── */
+.mp_volume_wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 70%;
+}
+
+.mp_vol_icon {
+  width: 18px;
+  height: 18px;
+  fill: rgba(255,255,255,0.35);
+  flex-shrink: 0;
+}
+
+.mp_volume {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.mp_volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--c);
+  cursor: pointer;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--c) 60%, transparent);
+  transition: background 0.4s ease;
+}
+
+/* ─── RIGHT: Playlist ─── */
+.mp_right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mp_playlist_title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.mp_tracklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ─── Track card ─── */
+.mp_track_card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.mp_track_card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateX(4px);
+}
+
+.mp_track_card.active {
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  border-color: color-mix(in srgb, var(--c) 40%, transparent);
+}
+
+.mp_card_cover {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.mp_card_play_icon {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.mp_track_card:hover .mp_card_play_icon,
+.mp_track_card.active .mp_card_play_icon {
+  opacity: 1;
+}
+
+.mp_card_play_icon svg { width: 20px; height: 20px; fill: white; }
+
+.mp_card_bars {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 14px;
+}
+
+.mp_card_bars span {
+  width: 3px;
+  background: white;
+  border-radius: 2px;
+  animation: bar-bounce 0.8s ease-in-out infinite;
+}
+
+.mp_card_bars span:nth-child(1) { animation-delay: 0s;    animation-duration: 0.6s; }
+.mp_card_bars span:nth-child(2) { animation-delay: 0.15s; animation-duration: 0.8s; }
+.mp_card_bars span:nth-child(3) { animation-delay: 0.3s;  animation-duration: 0.7s; }
+.mp_card_bars span:nth-child(4) { animation-delay: 0.1s;  animation-duration: 0.9s; }
+
+@keyframes bar-bounce {
+  0%, 100% { height: 3px; }
+  50%       { height: 12px; }
+}
+
+.mp_card_info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.mp_card_num {
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.mp_card_title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mp_card_artist {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mp_card_genre {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .mp_inner {
+    grid-template-columns: 1fr;
+    padding: 4rem 5vw 3rem;
+    gap: 2.5rem;
+  }
+  .mp_vinyl_wrap {
+    width: clamp(200px, 65vw, 300px);
+    height: clamp(200px, 65vw, 300px);
+  }
+  .mp_card_genre { display: none; }
+}

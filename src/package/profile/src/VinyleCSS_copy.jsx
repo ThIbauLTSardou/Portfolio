@@ -5,28 +5,61 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+
 const sections = [
   {
+    id: 'identite',
+    piste: 'Piste 01 : Qui suis-je ?',
+    title: 'Qui suis-je ?',
+    content: (
+      <div className="objectifs-content">
+        <p className="objectif-desc">
+          Étudiant en <em>BUT MMI</em> passionné par le <em>design</em> et le <em>développement web créatif</em>. Je transforme des idées en expériences visuelles mémorables.
+        </p>
+        <div className="objectif-tags">
+          <span className="otag">UI/UX</span>
+          <span className="otag">Motion</span>
+          <span className="otag">Dev front-end</span>
+          <span className="otag">Créativité</span>
+        </div>
+      </div>
+    ),
+  },
+  {
     id: 'parcours',
-    piste: 'Piste 01 : Parcours scolaire',
+    piste: 'Piste 02 : Parcours scolaire',
     title: 'Parcours scolaire',
     content: (
-      <div className="timeline">
-        <div className="timeline-item">
-          <div className="timeline-dot" />
-          <div className="timeline-content">
-            <span className="timeline-year">2023 — auj.</span>
-            <strong>DUT Informatique</strong>
-            <span className="timeline-sub">IUT de Toulon</span>
+      <div className="parcours-cards">
+        <div className="parcours-card" style={{ '--card-bg': '#e8645a' }}>
+          <div className="parcours-card-top">
+            <span className="parcours-location">La Roche sur Yon (85)</span>
+            <strong className="parcours-name">Bac Général</strong>
+            <p className="parcours-desc">Spécialité Mathématiques et Numérique et Science de l'Ingénieur</p>
+          </div>
+          <div className="parcours-card-logo">
+            <img src="/img/delattre.png" alt="Lycée Delattre" />
           </div>
         </div>
-        <div className="timeline-line" />
-        <div className="timeline-item">
-          <div className="timeline-dot" />
-          <div className="timeline-content">
-            <span className="timeline-year">2023</span>
-            <strong>Baccalauréat Scientifique</strong>
-            <span className="timeline-sub">Mention Bien</span>
+        <div className="parcours-card" style={{ '--card-bg': '#7c3aed' }}>
+          <div className="parcours-card-top">
+            <span className="parcours-location">Lannion (22)</span>
+            <strong className="parcours-name">BUT MMI</strong>
+            <p className="parcours-desc">Spécialité Développement Web et disp. interactifs</p>
+          </div>
+          <div className="parcours-card-logo">
+            <img src="/img/mmi.png" alt="MMI" />
+          </div>
+        </div>
+        <div className="parcours-card" style={{ '--card-bg': '#7ab8e8' }}>
+          <div className="parcours-card-top">
+            <span className="parcours-location">Loperhet (29)</span>
+            <strong className="parcours-name">Alternance</strong>
+            <p className="parcours-sub">Aviation civile</p>
+            <p className="parcours-desc">Développement d'application web React</p>
+          </div>
+          <div className="parcours-card-logo">
+            <img src="/img/dgac.png" alt="DGAC" />
           </div>
         </div>
       </div>
@@ -34,7 +67,7 @@ const sections = [
   },
   {
     id: 'objectifs',
-    piste: 'Piste 02 : Mes objectifs',
+    piste: 'Piste 03 : Mes objectifs',
     title: 'Mes objectifs',
     content: (
       <div className="objectifs-content">
@@ -53,27 +86,6 @@ const sections = [
       </div>
     ),
   },
-  {
-    id: 'passions',
-    piste: 'Piste 03 : Mes passions',
-    title: 'Mes passions',
-    content: (
-      <div className="passions-grid">
-        <div className="passion-card">
-          <span className="passion-icon">🎨</span>
-          <span className="passion-label">Design</span>
-        </div>
-        <div className="passion-card">
-          <span className="passion-icon">🎹</span>
-          <span className="passion-label">Musique</span>
-        </div>
-        <div className="passion-card">
-          <span className="passion-icon">💻</span>
-          <span className="passion-label">Code</span>
-        </div>
-      </div>
-    ),
-  },
 ];
 
 // Phase 0→ARRIVAL  : vinyle arrive de droite vers le centre
@@ -86,6 +98,7 @@ export const Vinyle = () => {
   const vinylRef = useRef(null);
   const wrapperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);
+
 
   useEffect(() => {
     gsap.set(wrapperRef.current, { xPercent: -50, x: 0, y: '150vh' });
@@ -159,7 +172,7 @@ export const Vinyle = () => {
             <path id="p1" d="M 275,275 m -215,0 a 215,215 0 1,1 430,0 a 215,215 0 1,1 -430,0" fill="none" />
             <text className="track-text">
               <textPath href="#p1" startOffset="0%">
-                {active ? `${active.piste} • ${active.piste} •` : ''}
+                {active ? `${active.piste}` : ''}
               </textPath>
             </text>
           </svg>

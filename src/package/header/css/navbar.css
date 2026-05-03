@@ -1,59 +1,83 @@
-.navbar {
+.navbar_wrap {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 3rem;
-  height: 56px;
-  background: rgba(27, 21, 2, 0.85);
-  backdrop-filter: blur(14px);
   opacity: 0;
 }
 
-.navbar_logo {
-  font-family: "Vandalust";
-  font-size: 1.4rem;
-  color: var(--yellow);
-  text-decoration: none;
-  letter-spacing: 2px;
-}
-
-.navbar_links {
+.navbar {
   display: flex;
-  list-style: none;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--black);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 0.35rem 0.5rem;
 }
 
 .navbar_link {
   text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.65);
-  transition: color 0.2s ease;
+  padding: 0.38rem 0.9rem;
+  border-radius: 9999px;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  font-family: system-ui, sans-serif;
 }
 
 .navbar_link:hover {
+  background: rgba(255, 255, 255, 0.1);
   color: var(--yellow);
 }
 
-.navbar_cta {
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--black);
-  background: var(--yellow);
-  padding: 0.45rem 1.2rem;
-  transition: opacity 0.2s ease;
+/* ── Bouton flottant musique ── */
+.navbar_music_fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 500;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--black);
+  border: 1.5px solid rgba(254, 215, 60, 0.25);
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.navbar_cta:hover {
-  opacity: 0.8;
+.navbar_music_fab svg {
+  width: 22px;
+  height: 22px;
+}
+
+.navbar_music_fab:hover {
+  transform: scale(1.12);
+  border-color: var(--yellow);
+  box-shadow: 0 6px 32px rgba(254, 215, 60, 0.25);
+}
+
+@media (max-width: 480px) {
+  .navbar_link {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .navbar {
+    gap: 0;
+  }
+  .navbar_music_fab {
+    bottom: 1.2rem;
+    right: 1.2rem;
+    width: 44px;
+    height: 44px;
+  }
 }
