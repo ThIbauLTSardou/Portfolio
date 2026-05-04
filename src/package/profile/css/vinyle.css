@@ -9,7 +9,7 @@
         .vinyl-content-display {
           position: fixed;
           top: 20%;
-          left: 26%;
+          left: 34%;
           transform: translate(-50%, -50%);
           z-index: 10;
           width: 48%;
@@ -44,12 +44,7 @@
         }
 
         .vinyl-section-title::before {
-          content: '';
-          display: inline-block;
-          width: 2.5rem;
-          height: 3px;
-          background: var(--yellow);
-          flex-shrink: 0;
+          display: none;
         }
 
         .vinyl-section-body {
@@ -345,14 +340,15 @@
         .vinyl-label-top,
         .vinyl-label-bottom {
           color: var(--yellow);
-          font-size: clamp(0.5rem, 1vw, 0.85rem);
-          font-weight: 700;
+          font-size: clamp(0.65rem, 1.1vw, 1rem);
+          font-weight: 800;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 3px;
           text-align: center;
-          padding: 0.4rem 0;
-          min-height: 1.5rem;
+          padding: 0.6rem 0;
+          min-height: 2rem;
           transition: opacity 0.4s ease;
+          opacity: 0.9;
         }
 
         .vinyl-disk {
@@ -458,4 +454,103 @@
           font-weight: 900;
           pointer-events: none;
           white-space: nowrap;
+        }
+
+        /* ── À PROPOS (section 1) ── */
+        .apropos {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .apropos-desc {
+          font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+          color: rgba(255,255,255,0.85);
+          line-height: 1.75;
+          max-width: 50ch;
+        }
+
+        .apropos-desc em {
+          font-style: normal;
+          color: var(--yellow);
+          font-weight: 700;
+        }
+
+        .apropos-stats {
+          display: flex;
+          gap: 2.5rem;
+        }
+
+        .apropos-stat {
+          display: flex;
+          flex-direction: column;
+          gap: 0.15rem;
+        }
+
+        .apropos-stat-num {
+          font-size: clamp(2rem, 4vw, 3.5rem);
+          font-weight: 900;
+          color: var(--yellow);
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+
+        .apropos-stat-label {
+          font-size: 0.78rem;
+          color: rgba(255,255,255,0.5);
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          font-weight: 600;
+        }
+
+        .apropos-contact {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          border-left: 2px solid rgba(254,215,60,0.3);
+          padding-left: 1rem;
+        }
+
+        .apropos-contact-item {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+
+        .apropos-contact-icon {
+          color: var(--yellow);
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+        }
+
+        .apropos-contact-value {
+          font-size: 0.9rem;
+          color: rgba(255,255,255,0.8);
+          font-weight: 500;
+        }
+
+        .apropos-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.65rem 1.6rem;
+          background: transparent;
+          color: var(--yellow);
+          border: 2px solid var(--yellow);
+          font-weight: 800;
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          border-radius: 9999px;
+          text-decoration: none;
+          width: fit-content;
+          transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+          pointer-events: all;
+        }
+
+        .apropos-btn:hover {
+          background: var(--yellow);
+          color: #111;
+          transform: translateX(3px);
         }

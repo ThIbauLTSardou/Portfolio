@@ -10,18 +10,39 @@ const sections = [
   {
     id: 'identite',
     piste: 'Piste 01 : Qui suis-je ?',
-    title: 'Qui suis-je ?',
+    title: 'À propos',
     content: (
-      <div className="objectifs-content">
-        <p className="objectif-desc">
-          Étudiant en <em>BUT MMI</em> passionné par le <em>design</em> et le <em>développement web créatif</em>. Je transforme des idées en expériences visuelles mémorables.
+      <div className="apropos">
+        <p className="apropos-desc">
+          Je m'appelle <em>Thibault Sardou</em>, j'ai 21 ans et je suis actuellement en troisième année de <em>BUT Métiers du Multimédia et de l'Internet (MMI)</em>. Je souhaite me spécialiser dans le <em>développement web</em> et construire une carrière d'<em>auto entrepreneur</em> dans ce domaine.
         </p>
-        <div className="objectif-tags">
-          <span className="otag">UI/UX</span>
-          <span className="otag">Motion</span>
-          <span className="otag">Dev front-end</span>
-          <span className="otag">Créativité</span>
+        <div className="apropos-stats">
+          <div className="apropos-stat">
+            <span className="apropos-stat-num">3 ans</span>
+            <span className="apropos-stat-label">d'expérience</span>
+          </div>
+          <div className="apropos-stat">
+            <span className="apropos-stat-num">12+</span>
+            <span className="apropos-stat-label">projets réalisés</span>
+          </div>
         </div>
+        <div className="apropos-contact">
+          <div className="apropos-contact-item">
+            <span className="apropos-contact-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            <span className="apropos-contact-value">thibaultsardou1@gmail.com</span>
+          </div>
+          <div className="apropos-contact-item">
+            <span className="apropos-contact-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.92 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.85 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span className="apropos-contact-value">07 66 15 18 24</span>
+          </div>
+        </div>
+        <a href="/CV_Thibault_Sardou.pdf" className="apropos-btn" target="_blank" rel="noreferrer">
+          Me découvrir →
+        </a>
       </div>
     ),
   },
@@ -127,10 +148,7 @@ export const Vinyle = () => {
           const rotation = rotationProgress * 540;
           gsap.set(vinylRef.current, { rotation: -rotation });
 
-          const index = Math.min(
-            Math.floor(rotationProgress * sections.length),
-            sections.length - 1
-          );
+          const index = rotationProgress < 0.33 ? 0 : rotationProgress < 0.66 ? 1 : 2;
           setActiveIndex(index);
           return;
         }
@@ -164,15 +182,20 @@ export const Vinyle = () => {
 
       <div ref={wrapperRef} className="vinyl-wrapper">
         <div className="vinyl-label-top">
-          {active ? active.piste : ''}
+          {active ? active.title : ''}
         </div>
 
         <div ref={vinylRef} className="vinyl-disk">
           <svg className="track-svg" viewBox="0 0 550 550">
             <path id="p1" d="M 275,275 m -215,0 a 215,215 0 1,1 430,0 a 215,215 0 1,1 -430,0" fill="none" />
             <text className="track-text">
-              <textPath href="#p1" startOffset="0%">
-                {active ? `${active.piste}` : ''}
+              <textPath href="#p1" startOffset="0%" textAnchor="middle">
+                {active ? active.piste : ''}
+              </textPath>
+            </text>
+            <text className="track-text">
+              <textPath href="#p1" startOffset="50%" textAnchor="middle">
+                {active ? active.piste : ''}
               </textPath>
             </text>
           </svg>
@@ -192,7 +215,7 @@ export const Vinyle = () => {
         </div>
 
         <div className="vinyl-label-bottom">
-          {active ? active.piste : ''}
+          {active ? active.title : ''}
         </div>
       </div>
     </div>

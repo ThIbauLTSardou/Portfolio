@@ -21,6 +21,7 @@
 .profile_title h3{
     font-size: clamp(1.2rem, 6vw, 11rem);
     color: var(--yellow);
+    white-space: nowrap;
 }
 
 .tybo_name {

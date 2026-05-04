@@ -5,31 +5,36 @@ import "../css/skills.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const ICON_BASE = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
+
 const stack = [
   {
     category: "Front-end",
     items: [
-      { name: "React", description: "Bibliothèque JavaScript pour construire des interfaces utilisateur réactives et composants réutilisables." },
-      { name: "HTML", description: "Langage de balisage structurant le contenu web avec sémantique et accessibilité." },
-      { name: "CSS", description: "Feuilles de style pour la mise en forme, animations et design responsive." },
-      { name: "JavaScript", description: "Langage de programmation dynamique pour l'interactivité et la logique côté client." },
+      { name: "React", icon: `${ICON_BASE}/react/react-original.svg`, url: "https://react.dev" },
+      { name: "HTML", icon: `${ICON_BASE}/html5/html5-original.svg`, url: "https://developer.mozilla.org/fr/docs/Web/HTML" },
+      { name: "CSS", icon: `${ICON_BASE}/css3/css3-original.svg`, url: "https://developer.mozilla.org/fr/docs/Web/CSS" },
+      { name: "JavaScript", icon: `${ICON_BASE}/javascript/javascript-original.svg`, url: "https://developer.mozilla.org/fr/docs/Web/JavaScript" },
     ],
   },
   {
     category: "Back-end",
     items: [
-      { name: "Node.js", description: "Environnement d'exécution JavaScript côté serveur pour des APIs performantes." },
-      { name: "Express", description: "Framework minimaliste pour construire des APIs REST et applications web." },
-      { name: "PHP", description: "Langage serveur polyvalent pour le développement web dynamique." },
+      { name: "Node.js", icon: `${ICON_BASE}/nodejs/nodejs-original.svg`, url: "https://nodejs.org" },
+      { name: "Express", icon: `${ICON_BASE}/express/express-original.svg`, url: "https://expressjs.com" },
+      { name: "PHP", icon: `${ICON_BASE}/php/php-original.svg`, url: "https://www.php.net" },
     ],
   },
   {
     category: "Outils",
     items: [
-      { name: "Git", description: "Système de contrôle de version distribué pour la gestion du code source." },
-      { name: "Figma", description: "Outil de design collaboratif pour la création d'interfaces et prototypes." },
-      { name: "VS Code", description: "Éditeur de code léger et extensible avec débogage intégré." },
-      { name: "Vite", description: "Outil de build ultra-rapide pour les projets JavaScript modernes." },
+      { name: "Git", icon: `${ICON_BASE}/git/git-original.svg`, url: "https://git-scm.com" },
+      { name: "Figma", icon: `${ICON_BASE}/figma/figma-original.svg`, url: "https://figma.com" },
+      { name: "VS Code", icon: `${ICON_BASE}/vscode/vscode-original.svg`, url: "https://code.visualstudio.com" },
+      { name: "Vite", icon: `${ICON_BASE}/vitejs/vitejs-original.svg`, url: "https://vitejs.dev" },
+      { name: "Supabase", icon: `${ICON_BASE}/supabase/supabase-original.svg`, url: "https://supabase.com" },
+      { name: "Claude Code", icon: "https://avatars.githubusercontent.com/u/76263028?s=48", url: "https://claude.ai/code" },
+      { name: "DBeaver", icon: `${ICON_BASE}/dbeaver/dbeaver-original.svg`, url: "https://dbeaver.io" },
     ],
   },
 ];
@@ -123,11 +128,11 @@ export function Skills() {
 
         <div className="skills_content" ref={contentRef}>
           {activeGroup.items.map((item) => (
-            <div key={item.name} className="skills_card">
+            <a key={item.name} className="skills_card" href={item.url} target="_blank" rel="noreferrer">
+              {item.icon && <img src={item.icon} alt={item.name} className="skills_card_icon" />}
               <div className="skills_card_name">{item.name}</div>
-              <p className="skills_card_desc">{item.description}</p>
               <span className="skills_card_arrow">↗</span>
-            </div>
+            </a>
           ))}
         </div>
       </div>

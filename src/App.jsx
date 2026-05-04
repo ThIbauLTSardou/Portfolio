@@ -1,12 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import {Home} from "./package/home/index";
+import { Cursor } from "./components/Cursor";
 import './index.css'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <>
+      <Cursor />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
