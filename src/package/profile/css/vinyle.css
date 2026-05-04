@@ -16,20 +16,59 @@
           pointer-events: none;
         }
 
+        @keyframes vinyl-section-in {
+          from {
+            opacity: 0;
+            transform: translateY(2rem) skewY(1deg);
+            filter: blur(4px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) skewY(0deg);
+            filter: blur(0);
+          }
+        }
+
+        @keyframes vinyl-child-in {
+          from {
+            opacity: 0;
+            transform: translateY(1rem);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .vinyl-section {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           opacity: 0;
-          transform: translateY(1.5rem);
-          transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
         }
 
         .vinyl-section.active {
           opacity: 1;
-          transform: translateY(0);
+          pointer-events: auto;
+          animation: vinyl-section-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        .vinyl-section.active .vinyl-section-title,
+        .vinyl-section.active .vinyl-section-body > * {
+          opacity: 0;
+          animation: vinyl-child-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .vinyl-section.active .vinyl-section-title {
+          animation-delay: 0.1s;
+        }
+
+        .vinyl-section.active .vinyl-section-body > *:nth-child(1) { animation-delay: 0.2s; }
+        .vinyl-section.active .vinyl-section-body > *:nth-child(2) { animation-delay: 0.3s; }
+        .vinyl-section.active .vinyl-section-body > *:nth-child(3) { animation-delay: 0.4s; }
+        .vinyl-section.active .vinyl-section-body > *:nth-child(4) { animation-delay: 0.5s; }
 
         .vinyl-section-title {
           font-size: clamp(1.2rem, 2.5vw, 2.5rem);
