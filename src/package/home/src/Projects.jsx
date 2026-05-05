@@ -24,18 +24,52 @@ export function Projects() {
         },
       });
 
-      document.querySelectorAll(".projet, .content_secondaire").forEach((el) => {
+      // Projets principaux : apparition + disparition en cascade par paire
+      const projets = document.querySelectorAll(".projet");
+      projets.forEach((el, i) => {
+        const isRight = i % 2 === 1;
         gsap.fromTo(
           el,
-          { opacity: 0 },
+          {
+            opacity: 0,
+            y: 80,
+            x: isRight ? 40 : -40,
+            scale: 0.96,
+          },
           {
             opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
+            y: 0,
+            x: 0,
+            scale: 1,
+            duration: 1.1,
+            ease: "power4.out",
             scrollTrigger: {
               trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none",
+              start: "top 88%",
+              end: "bottom 5%",
+              toggleActions: "play none none reverse",
+            },
+            delay: (i % 2) * 0.15,
+          }
+        );
+      });
+
+      // Projets secondaires : apparition + disparition
+      document.querySelectorAll(".content_secondaire").forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            delay: i * 0.08,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              end: "bottom 5%",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -91,7 +125,7 @@ export function Projects() {
                 <p>{projet.petite_description}</p>
                 <p className="projet_secondaire_categorie">{projet.categorie}</p>
               </a>
-              <img src="/img/icone/fleche-diagonal.png" alt="" />
+              <span className="projet_secondaire_arrow">↗</span>
             </div>
           ))}
         </div>

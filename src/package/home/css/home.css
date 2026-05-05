@@ -2,3 +2,19 @@
     margin: 0;
     padding: 0;
 }
+
+/* ── Footer reveal effect ── */
+.projects_footer_wrap {
+  position: relative;
+}
+
+.projects_sticky {
+  position: relative;
+  z-index: 2;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}

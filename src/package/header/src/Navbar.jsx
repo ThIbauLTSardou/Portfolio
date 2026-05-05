@@ -34,6 +34,19 @@ export function Navbar({ onMusicOpen }) {
     <>
       <div className="navbar_wrap" ref={navRef}>
         <nav className="navbar">
+          <a href="#" className="navbar_logo" aria-label="Accueil">
+            <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="navbar_logo_svg">
+              <circle cx="110" cy="110" r="104" fill="#FED73C" stroke="#FED73C" strokeWidth="2"/>
+              <circle cx="110" cy="110" r="95" stroke="#1b1502" strokeWidth="1" opacity="0.15"/>
+              <circle cx="110" cy="110" r="84" stroke="#1b1502" strokeWidth="1" opacity="0.12"/>
+              <circle cx="110" cy="110" r="73" stroke="#1b1502" strokeWidth="1" opacity="0.1"/>
+              <circle cx="110" cy="110" r="62" stroke="#1b1502" strokeWidth="1" opacity="0.08"/>
+              <circle cx="110" cy="110" r="38" fill="#1b1502"/>
+              <circle cx="110" cy="110" r="5" fill="#FED73C"/>
+              <text x="110" y="110" fontFamily="'Vandalust', system-ui" fontSize="34" fontWeight="900" fill="#FED73C" textAnchor="middle" dominantBaseline="central">TS</text>
+            </svg>
+          </a>
+          <div className="navbar_divider"/>
           {links.map((l) => (
             <a key={l.label} href={l.href} className="navbar_link">{l.label}</a>
           ))}

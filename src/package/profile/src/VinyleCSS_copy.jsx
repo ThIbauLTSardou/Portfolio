@@ -48,7 +48,7 @@ const sections = [
   },
   {
     id: 'parcours',
-    piste: 'Piste 02 : Parcours scolaire',
+    piste: 'Piste 02 : Parcours',
     title: 'Parcours scolaire',
     content: (
       <div className="parcours-cards">
@@ -89,20 +89,20 @@ const sections = [
   {
     id: 'objectifs',
     piste: 'Piste 03 : Mes objectifs',
-    title: 'Mes objectifs',
+    title: 'Mon objectif',
     content: (
       <div className="objectifs-content">
         <div className="objectif-word">
-          <span className="word-outline">CRÉER</span>
-          <span className="word-fill">CRÉER</span>
+          <span className="word-outline">ENTREPRENDRE</span>
+          <span className="word-fill">ENTREPRENDRE</span>
         </div>
         <p className="objectif-desc">
-          Développeur front-end créatif — allier <em>design</em> et <em>code</em> pour des expériences mémorables.
+          Mon objectif est de devenir <em>auto-entrepreneur</em> et de développer des <em>solutions web sur mesure</em> pour mes clients. Une démarche que j'ai déjà entamée.
         </p>
         <div className="objectif-tags">
-          <span className="otag">UI/UX</span>
-          <span className="otag">Motion</span>
-          <span className="otag">Web créatif</span>
+          <span className="otag">Auto-entrepreneur</span>
+          <span className="otag">Solutions web</span>
+          <span className="otag">Freelance</span>
         </div>
       </div>
     ),
@@ -174,7 +174,6 @@ export const Vinyle = () => {
       <div className="vinyl-content-display">
         {sections.map((s, i) => (
           <div key={s.id} className={`vinyl-section ${i === activeIndex ? 'active' : ''}`}>
-            <h2 className="vinyl-section-title">{s.title}</h2>
             <div className="vinyl-section-body">{s.content}</div>
           </div>
         ))}

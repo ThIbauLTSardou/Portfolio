@@ -7,6 +7,31 @@
   opacity: 0;
 }
 
+.navbar_logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  padding: 0 0.3rem;
+}
+
+.navbar_logo_svg {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar_logo:hover .navbar_logo_svg {
+  transform: rotate(20deg);
+}
+
+.navbar_divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 0.2rem;
+}
+
 .navbar {
   display: flex;
   align-items: center;

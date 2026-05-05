@@ -123,6 +123,24 @@
     }
 }
 
+/* ── Cap taille grand écran ── */
+@media (min-width: 1900px) {
+  .header img {
+    width: 450px;
+  }
+  .middle {
+    height: 600px;
+    margin-top: -205px;
+  }
+  .header_title {
+    font-size: 4rem;
+    margin-top: 430px;
+  }
+  .header_subtitle {
+    font-size: 1.1rem;
+  }
+}
+
 /* ── Sidebar responsive ── */
 @media (max-width: 768px) {
   .header_sidebar {

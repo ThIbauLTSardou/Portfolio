@@ -29,7 +29,6 @@ export function Cursor() {
     };
 
     const animate = () => {
-      // Le ring suit avec un léger lag
       ringX += (dotX - ringX) * 0.12;
       ringY += (dotY - ringY) * 0.12;
 
@@ -43,7 +42,6 @@ export function Cursor() {
 
     window.addEventListener("mousemove", onMove);
 
-    // Hover sur éléments interactifs
     const interactives = document.querySelectorAll("a, button, [role='button']");
     interactives.forEach((el) => {
       el.addEventListener("mouseenter", onEnter);
@@ -62,7 +60,6 @@ export function Cursor() {
     };
   }, []);
 
-  // Pas de curseur sur mobile
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
     return null;
   }

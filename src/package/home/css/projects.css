@@ -26,6 +26,7 @@
 
 .title h1 {
   font-size: 7vw;
+  font-family: 'Vandalust', system-ui;
 }
 
 /* Liste projets principaux */
@@ -86,7 +87,7 @@
   transition: transform .8s cubic-bezier(.19, .91, .16, 1);
 }
 
-.projet a:hover .nom_projet {
+.projet:hover h2 {
   transform: translateX(15px);
   color: #EDCB3F;
 }
@@ -95,7 +96,7 @@
   transform: scale(1.06);
 }
 
-.projet a:hover p {
+.projet:hover p {
   transform: translateX(15px);
   color: white;
 }
@@ -163,9 +164,17 @@
   text-align: right;
 }
 
-.projet_secondaire .content_secondaire img {
-  height: 2vh;
-  width: 2vh;
+.projet_secondaire_arrow {
+  font-size: 1.4rem;
+  color: white;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+
+.projet_secondaire .content_secondaire:hover .projet_secondaire_arrow {
+  transform: translate(4px, -4px);
+  opacity: 1;
 }
 
 .projet_secondaire .content_secondaire:hover h2 {
@@ -175,6 +184,15 @@
 
 .projet_secondaire .content_secondaire:hover p {
   color: white;
+}
+
+@media (min-width: 1800px) {
+  .projet {
+    width: 810px;
+  }
+  .projet h2 {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {

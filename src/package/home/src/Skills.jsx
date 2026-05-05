@@ -49,14 +49,15 @@ export function Skills() {
 
   const activeGroup = stack.find((g) => g.category === activeCategory);
 
-  // Section entrance animation on scroll
+  // Section entrance + exit animation on scroll
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Apparition
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reverse",
         },
       });
 
@@ -77,6 +78,43 @@ export function Skills() {
           { y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power2.out" },
           "-=0.2"
         );
+
+      // Disparition en cascade inversée au scroll vers le bas
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "center 40%",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          const cards = Array.from(contentRef.current.children).reverse();
+          gsap.to(cards, {
+            y: 60,
+            opacity: 0,
+            duration: 0.4,
+            stagger: 0.07,
+            ease: "power2.in",
+          });
+          gsap.to(filtersRef.current.children, {
+            y: 20,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.in",
+            delay: 0.1,
+          });
+          gsap.to(titleRef.current, {
+            y: 40,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+            delay: 0.25,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(contentRef.current.children, { y: 0, opacity: 1, duration: 0.4, stagger: 0.07, ease: "power2.out" });
+          gsap.to(filtersRef.current.children, { y: 0, opacity: 1, duration: 0.3, stagger: 0.05, ease: "power2.out" });
+          gsap.to(titleRef.current, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
+        },
+      });
     }, sectionRef);
 
     return () => ctx.revert();

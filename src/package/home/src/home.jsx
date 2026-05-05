@@ -6,6 +6,7 @@ import { Profile } from "../../profile/index";
 import { Skills } from "./Skills";
 import { Projects } from "./Projects";
 import { MusicPlayer } from "../../music/src/MusicPlayer";
+import { Footer } from "../../../components/Footer";
 
 export function Home() {
   const [musicOpen, setMusicOpen] = useState(false);
@@ -16,7 +17,12 @@ export function Home() {
       <Header />
       <div id="section_profil"><Profile /></div>
       <div id="section_skills"><Skills /></div>
-      <Projects />
+      <div className="projects_footer_wrap">
+        <div className="projects_sticky">
+          <Projects />
+        </div>
+        <Footer />
+      </div>
       <MusicPlayer isOpen={musicOpen} onClose={() => setMusicOpen(false)} />
     </div>
   );
