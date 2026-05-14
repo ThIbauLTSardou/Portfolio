@@ -8,13 +8,13 @@ import { Projects } from "./Projects";
 import { MusicPlayer } from "../../music/src/MusicPlayer";
 import { Footer } from "../../../components/Footer";
 
-export function Home() {
+export function Home({ startCurtain }) {
   const [musicOpen, setMusicOpen] = useState(false);
 
   return (
     <div>
       <Navbar onMusicOpen={() => setMusicOpen(true)} />
-      <Header />
+      <Header startCurtain={startCurtain} />
       <div id="section_profil"><Profile /></div>
       <div id="section_skills"><Skills /></div>
       <div className="projects_footer_wrap">

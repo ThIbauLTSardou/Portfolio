@@ -1,0 +1,86 @@
+.ls-overlay {
+  position: fixed;
+  inset: 0;
+  background: #1b1502;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.ls-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Stack d'images ── */
+.ls-images-stack {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ls-img {
+  position: absolute;
+  width: 220px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Apparition : surgit de l'extérieur et se pose */
+@keyframes ls-appear {
+  0%   { opacity: 0; transform: var(--ls-base-transform) scale(1.6); }
+  60%  { opacity: 1; transform: var(--ls-base-transform) scale(0.96); }
+  80%  { transform: var(--ls-base-transform) scale(1.03); }
+  100% { opacity: 1; transform: var(--ls-base-transform) scale(1); }
+}
+
+/* Disparition : aspirée vers le centre */
+@keyframes ls-disappear {
+  0%   { opacity: 1; transform: var(--ls-base-transform) scale(1); }
+  100% { opacity: 0; transform: var(--ls-base-transform) scale(0.15); }
+}
+
+.ls-img--visible {
+  animation: ls-appear 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ls-img--hidden {
+  animation: ls-disappear 0.22s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+/* ── Titre "Portfolio" en mix-blend-mode ── */
+.ls-title {
+  position: relative;
+  z-index: 2;
+  font-family: "Vandalust", sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  color: #FED73C;
+  mix-blend-mode: difference;
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.02em;
+}
+
+/* ── Compteur pourcentage ── */
+.ls-counter {
+  position: absolute;
+  left: calc(100% + 1.2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: system-ui, monospace;
+  font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+  color: rgba(254, 215, 60, 0.55);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  z-index: 3;
+}

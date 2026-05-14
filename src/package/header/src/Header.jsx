@@ -6,8 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 
-export function Header() {
+export function Header({ startCurtain }) {
   useEffect(() => {
+    if (!startCurtain) return;
     const tl = gsap.timeline();
 
     tl.to(".curtain_left", {
@@ -90,7 +91,7 @@ export function Header() {
         scrub: 2,
       },
     });
-  }, []);
+  }, [startCurtain]);
 
   return (
     <>
