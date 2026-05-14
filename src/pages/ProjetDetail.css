@@ -188,6 +188,8 @@
 .pd_body {
   padding: 3rem 2.5rem 6rem;
   max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .pd_desc {
@@ -195,6 +197,54 @@
   line-height: 1.8;
   color: rgba(0,0,0,0.55);
   font-weight: 400;
+}
+
+/* ── Stack ticker ────────────────────────────────────── */
+.pd_stack_section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 2.5rem 0;
+  overflow: hidden;
+}
+
+.pd_ticker_wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.pd_ticker {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.pd_ticker_item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2.5rem;
+  white-space: nowrap;
+}
+
+.pd_ticker_name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111;
+}
+
+.pd_tech_icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.pd_ticker_sep {
+  font-size: 0.6rem;
+  color: rgba(0,0,0,0.2);
+  margin-left: 0.75rem;
 }
 
 /* ── Carousel ────────────────────────────────────────── */

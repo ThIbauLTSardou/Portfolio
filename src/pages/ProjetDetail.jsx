@@ -30,9 +30,12 @@ const FALLBACK_IMAGES = [
 ];
 
 function Carousel({ projet }) {
-  const images = [1, 2, 3].map(n => `/img/projet/${projet.nom}/${n}.jpg`);
+  const isUiUx = projet.categorie?.includes('UX');
+  const images = (isUiUx && projet.images) || [];
   const [index, setIndex] = useState(0);
   const trackRef = useRef(null);
+
+  if (images.length === 0) return null;
 
   const goTo = (i) => {
     const next = (i + images.length) % images.length;
@@ -52,11 +55,7 @@ function Carousel({ projet }) {
           <div className="pd_carousel_track" ref={trackRef}>
             {images.map((src, i) => (
               <div key={i} className="pd_carousel_slide">
-                <img
-                  src={src}
-                  alt={`Visuel ${i + 1}`}
-                  onError={e => { e.currentTarget.src = FALLBACK_IMAGES[i]; }}
-                />
+                <img src={src} alt={`Visuel ${i + 1}`} />
               </div>
             ))}
           </div>
@@ -66,6 +65,47 @@ function Carousel({ projet }) {
           <span className="pd_carousel_count">{index + 1} / {images.length}</span>
           <button className="pd_carousel_btn" onClick={() => goTo(index + 1)}>→</button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function StackTicker({ tech }) {
+  const tickerRef = useRef(null);
+  const tweenRef = useRef(null);
+  const items = [...tech, ...tech, ...tech, ...tech];
+
+  useEffect(() => {
+    const track = tickerRef.current;
+    if (!track || tech.length === 0) return;
+    const singleWidth = track.scrollWidth / 4;
+    tweenRef.current = gsap.to(track, {
+      x: `-=${singleWidth}`,
+      duration: tech.length * 2.5,
+      ease: 'none',
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % singleWidth),
+      },
+    });
+    return () => tweenRef.current?.kill();
+  }, [tech]);
+
+  if (tech.length === 0) return null;
+
+  return (
+    <div className="pd_ticker_wrap">
+      <div className="pd_ticker" ref={tickerRef}>
+        {items.map((t, i) => (
+          <div key={i} className="pd_ticker_item">
+            {TECH_ICONS[t]
+              ? <img src={TECH_ICONS[t]} alt={t} className="pd_tech_icon" />
+              : <span className="pd_tech_fallback">{t[0]}</span>
+            }
+            <span className="pd_ticker_name">{t}</span>
+            <span className="pd_ticker_sep">✦</span>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -143,33 +183,24 @@ export function ProjetModal({ id, onClose }) {
               <span className="pd_info_label">Catégorie</span>
               <span className="pd_info_value">{projet.categorie}</span>
             </div>
-            {allTech.length > 0 && (
-              <div className="pd_info_block pd_info_block--tech">
-                <span className="pd_info_label">Stack</span>
-                <div className="pd_tech_list">
-                  {allTech.map((t, i) => (
-                    <div key={i} className="pd_tech_item">
-                      {TECH_ICONS[t]
-                        ? <img src={TECH_ICONS[t]} alt={t} className="pd_tech_icon" />
-                        : <span className="pd_tech_fallback">{t[0]}</span>
-                      }
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
+
+          {/* Stack ticker */}
+          {allTech.length > 0 && (
+            <div className="pd_stack_section">
+              <span className="pd_info_label" style={{ padding: '0 2.5rem' }}>Stack</span>
+              <StackTicker tech={allTech} />
+            </div>
+          )}
 
           {/* Description */}
           {projet.paragraphe && (
             <div className="pd_body">
+              <span className="pd_body_label">À propos du projet</span>
               <p className="pd_desc">{projet.paragraphe}</p>
             </div>
           )}
 
-          {/* Carousel */}
-          <Carousel projet={projet} />
         </div>
       </div>
     </div>
