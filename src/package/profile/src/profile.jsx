@@ -58,14 +58,7 @@ export function Profile() {
         <div className="profile_left_side">
           <div className="profile_title left_title">
             <h1>Salut !</h1>
-            <h3>Moi c'est <span className="tybo_name">Tybo</span></h3>
-          </div>
-        </div>
-        <div className="profile_right_side">
-          <div className="right_top_container">
-            <div className="pp_container">
-              <img src={pp} alt="Photo de profil" className="pp_img" />
-            </div>
+            <h3>Moi c'est <span className="tybo_name">...</span></h3>
           </div>
         </div>
 

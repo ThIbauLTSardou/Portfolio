@@ -23,7 +23,7 @@ export function Footer() {
         <div className="footer_right">
           <svg className="footer_logo" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Disque vinyle de fond */}
-            <circle cx="110" cy="110" r="104" fill="#1b1502" stroke="#1b1502" strokeWidth="2"/>
+            <circle cx="110" cy="110" r="104" fill="#091403" stroke="#091403" strokeWidth="2"/>
             {/* Sillons */}
             <circle cx="110" cy="110" r="95" stroke="#2e2700" strokeWidth="1" opacity="0.6"/>
             <circle cx="110" cy="110" r="84" stroke="#2e2700" strokeWidth="1" opacity="0.5"/>
@@ -33,7 +33,7 @@ export function Footer() {
             {/* Label central jaune */}
             <circle cx="110" cy="110" r="38" fill="#FED73C"/>
             {/* Trou central */}
-            <circle cx="110" cy="110" r="5" fill="#1b1502"/>
+            <circle cx="110" cy="110" r="5" fill="#091403"/>
             {/* TS sur le label */}
             <text
               x="110"
@@ -41,7 +41,7 @@ export function Footer() {
               fontFamily="'Vandalust', system-ui"
               fontSize="34"
               fontWeight="900"
-              fill="#1b1502"
+              fill="#091403"
               textAnchor="middle"
               dominantBaseline="central"
             >TS</text>

@@ -24,7 +24,7 @@ export function Projects() {
         },
       });
 
-      // Projets principaux : apparition + disparition en cascade par paire
+      // Projets principaux : effet roulement sur le coin
       const projets = document.querySelectorAll(".projet");
       projets.forEach((el, i) => {
         const isRight = i % 2 === 1;
@@ -32,17 +32,18 @@ export function Projects() {
           el,
           {
             opacity: 0,
-            y: 80,
-            x: isRight ? 40 : -40,
-            scale: 0.96,
+            y: 100,
+            rotation: isRight ? 10 : -10,
+            transformOrigin: isRight ? "bottom right" : "bottom left",
+            scale: 0.92,
           },
           {
             opacity: 1,
             y: 0,
-            x: 0,
+            rotation: 0,
             scale: 1,
-            duration: 1.1,
-            ease: "power4.out",
+            duration: 1.2,
+            ease: "elastic.out(1, 0.6)",
             scrollTrigger: {
               trigger: el,
               start: "top 88%",

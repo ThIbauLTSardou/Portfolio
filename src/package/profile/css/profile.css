@@ -14,18 +14,28 @@
     margin-left: 10vw;
 }
 .profile_title h1{
-   font-size: clamp(.5rem, 10vw, 15rem);
-    font-weight: bolder;
+    font-size: clamp(.5rem, 10vw, 15rem);
+    font-weight: 900;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
     color: var(--black);
+    line-height: 1;
 }
 .profile_title h3{
     font-size: clamp(1.2rem, 6vw, 11rem);
+    font-weight: 900;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
     color: var(--yellow);
     white-space: nowrap;
+    line-height: 1;
+    margin-top: 2rem;
 }
 
 .tybo_name {
-    font-family: 'Kablammo', system-ui;
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
 }
 
 .profile_left_side{

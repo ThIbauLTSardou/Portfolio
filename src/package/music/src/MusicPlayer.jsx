@@ -73,6 +73,24 @@ export function MusicPlayer({ isOpen, onClose }) {
     }
   }, [isOpen, mounted]);
 
+  // Autoplay au chargement
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.7;
+    const tryPlay = () => {
+      audio.play().then(() => {
+        setIsPlaying(true);
+        setNeedleActive(true);
+      }).catch(() => {});
+    };
+    if (audio.readyState >= 2) {
+      tryPlay();
+    } else {
+      audio.addEventListener("canplay", tryPlay, { once: true });
+    }
+  }, []);
+
   // Web Audio API
   const initAudio = useCallback(() => {
     if (audioCtxRef.current) return;
@@ -87,6 +105,7 @@ export function MusicPlayer({ isOpen, onClose }) {
     analyserRef.current = analyser;
     sourceRef.current = source;
   }, []);
+
 
   // Visualizer loop
   const animate = useCallback(() => {
@@ -181,11 +200,15 @@ export function MusicPlayer({ isOpen, onClose }) {
   const vizBars = bars.slice(0, 48);
   const cx = 200, cy = 200, vizRadius = 160;
 
-  if (!mounted) return <audio ref={audioRef} preload="metadata" />;
+  if (!mounted) return (
+    <>
+      <audio ref={audioRef} src={track.src} preload="auto" />
+    </>
+  );
 
   return (
     <>
-      <audio ref={audioRef} preload="metadata" />
+      <audio ref={audioRef} src={track.src} preload="auto" />
 
       {/* Overlay sombre */}
       <div ref={overlayRef} className="mp_overlay" onClick={onClose} />

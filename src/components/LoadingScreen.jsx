@@ -4,11 +4,11 @@ import "../styles/loading.css";
 const IMAGES = [
   "/img/harman.png",
   "/img/ivy.png",
-  "/img/delattre.png",
   "/img/dgac.png",
   "/img/mmi.png",
-  "/img/1.png",
   "/img/2.png",
+  "/img/moi/biarritz.png",
+  "/img/moi/plage.png",
 ];
 
 const ROTATIONS = [-18, 12, -8, 22, -14, 6, -20];

@@ -1,7 +1,7 @@
 .ls-overlay {
   position: fixed;
   inset: 0;
-  background: #1b1502;
+  background: #091403;
   z-index: 9000;
   display: flex;
   align-items: center;
@@ -19,8 +19,8 @@
 /* ── Stack d'images ── */
 .ls-images-stack {
   position: absolute;
-  width: 340px;
-  height: 340px;
+  width: 520px;
+  height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,8 +28,8 @@
 
 .ls-img {
   position: absolute;
-  width: 220px;
-  height: 160px;
+  width: 360px;
+  height: 260px;
   object-fit: cover;
   border-radius: 4px;
   opacity: 0;

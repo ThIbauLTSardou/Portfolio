@@ -13,9 +13,9 @@ const sections = [
     title: 'À propos',
     content: (
       <div className="apropos">
-        <p className="apropos-desc">
-          Je m'appelle <em>Thibault Sardou</em>, j'ai 21 ans et je suis actuellement en troisième année de <em>BUT Métiers du Multimédia et de l'Internet (MMI)</em>. Je souhaite me spécialiser dans le <em>développement web</em> et construire une carrière d'<em>auto entrepreneur</em> dans ce domaine.
-        </p>
+        <div className="pp_container">
+          <img src="/pp.png" alt="Photo de profil" className="pp_img" />
+        </div>
         <div className="apropos-stats">
           <div className="apropos-stat">
             <span className="apropos-stat-num">3 ans</span>
@@ -40,9 +40,6 @@ const sections = [
             <span className="apropos-contact-value">07 66 15 18 24</span>
           </div>
         </div>
-        <a href="/CV_Thibault_Sardou.pdf" className="apropos-btn" target="_blank" rel="noreferrer">
-          Me découvrir →
-        </a>
       </div>
     ),
   },
