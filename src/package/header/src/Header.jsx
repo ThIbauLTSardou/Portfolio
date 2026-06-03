@@ -4,9 +4,36 @@ import casque_droit from "../img/casque_droit.png";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
+const TITLE = "Thibault Sardou";
+// Indices des lettres qui bougent (sur le nom complet espaces inclus)
+const ANIMATED_INDICES = [0, 3, 5, 8, 10, 13];
 
 export function Header({ startCurtain }) {
+  const letterRefs = useRef([]);
+
+  // Animation flottante en boucle sur certaines lettres
+  useEffect(() => {
+    if (!startCurtain) return;
+    letterRefs.current.forEach((el, i) => {
+      if (!el || !ANIMATED_INDICES.includes(i)) return;
+      const delay = i * 0.18;
+      const yAmp  = gsap.utils.random(6, 14);
+      const rot   = gsap.utils.random(-8, 8);
+      const dur   = gsap.utils.random(1.8, 2.8);
+      gsap.to(el, {
+        y: -yAmp,
+        rotation: rot,
+        duration: dur,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay,
+      });
+    });
+  }, [startCurtain]);
+
   useEffect(() => {
     if (!startCurtain) return;
     const tl = gsap.timeline();
@@ -135,7 +162,18 @@ export function Header({ startCurtain }) {
             </div>
 
             <div className="header_title">
-              <h1>Thibault Sardou</h1>
+              <h1 className="header_title_animated">
+                {TITLE.split("").map((char, i) => (
+                  <span
+                    key={i}
+                    ref={(el) => (letterRefs.current[i] = el)}
+                    className="header_letter"
+                    style={{ display: char === " " ? "inline" : "inline-block" }}
+                  >
+                    {char === " " ? " " : char}
+                  </span>
+                ))}
+              </h1>
               <p className="header_subtitle">Développeur Frontend Junior</p>
             </div>
           </div>

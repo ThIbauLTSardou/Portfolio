@@ -22,6 +22,8 @@ const stack = [
   { name: "Vite",        icon: `${ICON_BASE}/vitejs/vitejs-original.svg`,         midX: 20,  midY: 42,  dx: 115, dy: 55  },
   { name: "Supabase",    icon: `${ICON_BASE}/supabase/supabase-original.svg`,     midX: 65,  midY: 22,  dx: -95, dy: 60  },
   { name: "Claude Code", icon: "https://avatars.githubusercontent.com/u/76263028?s=48", midX: 35, midY: 62, dx: 105, dy: -45 },
+  { name: "SCSS",        icon: `${ICON_BASE}/sass/sass-original.svg`,              midX: 50,  midY: 40,  dx: -110, dy: 70 },
+  { name: "Bulma",       icon: `${ICON_BASE}/bulma/bulma-plain.svg`,               midX: 18,  midY: 68,  dx: 115, dy: -55 },
 ];
 
 export function Skills() {
@@ -68,6 +70,7 @@ export function Skills() {
             style={{ left: `${item.midX - item.dx / 2}%`, top: `${item.midY - item.dy / 2}%` }}
           >
             <img src={item.icon} alt={item.name} className="skills_chip_icon" />
+            <span className="skills_chip_tooltip">{item.name}</span>
           </div>
         ))}
       </div>

@@ -124,6 +124,17 @@
      gap: 0.4rem;
 }
 
+.header_title_animated {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.header_letter {
+  will-change: transform;
+  transform-origin: center bottom;
+}
+
 .header_subtitle {
   font-family: system-ui, sans-serif;
   font-size: clamp(0.65rem, 1.1vw, 1.1rem);

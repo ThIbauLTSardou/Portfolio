@@ -59,6 +59,31 @@
   filter: none;
 }
 
+.skills_chip_tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  mix-blend-mode: normal;
+  z-index: 10;
+}
+
+.skills_chip:hover .skills_chip_tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .skills_chip_name {
   font-size: 0.55rem;
   font-weight: 700;
