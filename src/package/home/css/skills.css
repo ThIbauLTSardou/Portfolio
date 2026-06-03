@@ -1,142 +1,71 @@
 .section_skills {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  background-color: var(--yellow);
+  background-color: var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4rem);
   box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
 
-.skills_inner {
-  width: 100%;
-  max-width: 1200px;
+.skills_label {
+  font-family: "Vandalust";
+  font-size: clamp(3rem, 8vw, 8rem);
+  color: var(--yellow);
+  line-height: 1;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+/* Conteneur positionné au centre, les chips volent autour */
+.skills_field {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills_chip {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-}
-
-.skills_header {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.skills_title {
-  font-family: "Vandalust";
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  color: var(--black);
-  line-height: 1;
-}
-
-.skills_filters {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.skills_filter {
-  padding: 0.6rem 1.4rem;
-  border: 2px solid var(--black);
-  background: transparent;
-  color: var(--black);
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  font-family: inherit;
-}
-
-.skills_filter:hover {
-  background: var(--black);
-  color: var(--yellow);
-}
-
-.skills_filter--active {
-  background: var(--black);
-  color: var(--yellow);
-}
-
-.skills_content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.skills_card {
-  border: 1px solid rgba(27, 21, 2, 0.2);
-  padding: 1rem 1.25rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.75rem;
-  width: fit-content;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 4px var(--yellow), 0 0 0 6px var(--black), 0 0 0 8px var(--yellow);
   white-space: nowrap;
-  transition: border-color 0.2s ease, background 0.2s ease;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
+  will-change: transform;
+  cursor: default;
+  mix-blend-mode: difference;
 }
 
-.skills_card:hover {
-  border-color: var(--black);
-  background: rgba(27, 21, 2, 0.05);
-}
-
-.skills_card_header {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.skills_card_icon {
-  width: 28px;
-  height: 28px;
+.skills_chip_icon {
+  width: 44px;
+  height: 44px;
   object-fit: contain;
   flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  filter: none;
 }
 
-.skills_card_name {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 900;
+.skills_chip_name {
+  font-size: 0.55rem;
+  font-weight: 700;
   color: var(--black);
-}
-
-.skills_card_desc {
-  font-size: 0.9rem;
-  color: rgba(27, 21, 2, 0.55);
-  line-height: 1.6;
-  flex: 1;
-}
-
-.skills_card_arrow {
-  font-size: 1.2rem;
-  color: var(--black);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  flex-shrink: 0;
-}
-
-.skills_card:hover .skills_card_arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-@media (max-width: 768px) {
-  .skills_header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .skills_content {
-    grid-template-columns: 1fr;
-  }
-  .skills_card {
-    padding: 1.5rem;
-  }
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 3;
 }

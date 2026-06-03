@@ -1,7 +1,7 @@
 .ls-overlay {
   position: fixed;
   inset: 0;
-  background: #091403;
+  background: #1b1502;
   z-index: 9000;
   display: flex;
   align-items: center;

@@ -201,6 +201,50 @@ export function ProjetModal({ id, onClose }) {
             </div>
           )}
 
+          {/* Mon rôle + Ce que ça m'a apporté */}
+          {(projet.role || projet.apport) && (
+            <div className="pd_insights">
+              {projet.role && (
+                <div className="pd_insight_block pd_insight_block--role">
+                  <div className="pd_insight_header">
+                    <span className="pd_insight_num">01</span>
+                    <div>
+                      <span className="pd_insight_label">Mon rôle</span>
+                      <p className="pd_insight_title">{projet.role}</p>
+                    </div>
+                  </div>
+                  <ul className="pd_insight_list">
+                    {projet.role_details?.map((item, i) => (
+                      <li key={i} className="pd_insight_item">
+                        <span className="pd_insight_dot" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {projet.apport && (
+                <div className="pd_insight_block pd_insight_block--apport">
+                  <div className="pd_insight_header">
+                    <span className="pd_insight_num">02</span>
+                    <div>
+                      <span className="pd_insight_label">Ce que ça m'a apporté</span>
+                      <p className="pd_insight_title">Compétences acquises</p>
+                    </div>
+                  </div>
+                  <ul className="pd_insight_list">
+                    {projet.apport?.map((item, i) => (
+                      <li key={i} className="pd_insight_item">
+                        <span className="pd_insight_dot" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+
         </div>
       </div>
     </div>

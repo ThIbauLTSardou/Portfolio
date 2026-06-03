@@ -62,15 +62,35 @@
     position: relative;
 }
 
-.header img{
-     width: clamp(30px, 30vw, 450px);
-}
-
 .header_container{
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
    align-items: center;
-   width: 80vw;
+   width: 90vw;
+   margin-top: -8vh;
+}
+
+/* Row : casque gauche + svg + casque droit alignés ensemble */
+.middle_svg_row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+}
+
+.middle_svg_row .casque_gauche,
+.middle_svg_row .casque_droit {
+  width: clamp(30px, 28vw, 420px);
+  flex-shrink: 0;
+  transform: translateY(43%);
+}
+
+.middle_svg_row .svg {
+  flex: 1;
+  min-width: 0;
+  max-width: 45vw;
+  height: auto;
 }
 
 .middle svg {
@@ -87,19 +107,17 @@
 .middle{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    height: 35vw;
     width: 100%;
-    margin-top: -12vw;
+    gap: 0;
 }
 
 .header_title{
      font-size: clamp(1.2rem, 3vw, 4rem);
      font-family: "Vandalust";
-     width: max-content;
-     position: absolute;
-     margin-top: 25vw;
+     width: 100%;
+     text-align: center;
+     margin-top: -2rem;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -125,16 +143,12 @@
 
 /* ── Cap taille grand écran ── */
 @media (min-width: 1900px) {
-  .header img {
-    width: 450px;
-  }
-  .middle {
-    height: 600px;
-    margin-top: -205px;
+  .middle_svg_row .casque_gauche,
+  .middle_svg_row .casque_droit {
+    width: 420px;
   }
   .header_title {
     font-size: 4rem;
-    margin-top: 430px;
   }
   .header_subtitle {
     font-size: 1.1rem;
@@ -152,19 +166,30 @@
 @media (max-width: 600px) {
   .header_container {
     width: 95vw;
+    margin-top: 0;
   }
-  .header img {
-    width: clamp(20px, 22vw, 120px);
+
+  .middle_svg_row {
+    gap: 0;
   }
-  .middle {
-    height: 50vw;
-    margin-top: -18vw;
+
+  .middle_svg_row .casque_gauche,
+  .middle_svg_row .casque_droit {
+    width: clamp(60px, 22vw, 120px);
+    transform: translateY(43%);
   }
+
+  .middle_svg_row .svg {
+    max-width: 50vw;
+  }
+
   .header_title {
-    font-size: clamp(1rem, 5vw, 2rem);
-    margin-top: 35vw;
+    font-size: clamp(0.5rem, 4.5vw, 2rem);
+    white-space: nowrap;
+    margin-top: -0.5rem;
   }
+
   .header_subtitle {
-    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    font-size: clamp(0.5rem, 2.8vw, 0.8rem);
   }
 }

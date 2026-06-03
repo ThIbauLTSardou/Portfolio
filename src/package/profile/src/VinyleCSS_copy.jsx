@@ -49,35 +49,37 @@ const sections = [
     title: 'Parcours scolaire',
     content: (
       <div className="parcours-cards">
-        <div className="parcours-card" style={{ '--card-bg': '#e8645a' }}>
-          <div className="parcours-card-top">
-            <span className="parcours-location">La Roche sur Yon (85)</span>
-            <strong className="parcours-name">Bac Général</strong>
-            <p className="parcours-desc">Spécialité Mathématiques et Numérique et Science de l'Ingénieur</p>
-          </div>
+        <div className="parcours-card" style={{ '--card-accent': '#e8645a' }}>
+          <div className="parcours-card-year">2021</div>
           <div className="parcours-card-logo">
             <img src="/img/delattre.png" alt="Lycée Delattre" />
           </div>
-        </div>
-        <div className="parcours-card" style={{ '--card-bg': '#7c3aed' }}>
-          <div className="parcours-card-top">
-            <span className="parcours-location">Lannion (22)</span>
-            <strong className="parcours-name">BUT MMI</strong>
-            <p className="parcours-desc">Spécialité Développement Web et disp. interactifs</p>
+          <div className="parcours-card-body">
+            <span className="parcours-location">La Roche sur Yon · 85</span>
+            <strong className="parcours-name">Bac Général</strong>
+            <p className="parcours-desc">Maths · NSI</p>
           </div>
+        </div>
+        <div className="parcours-card" style={{ '--card-accent': '#a78bfa' }}>
+          <div className="parcours-card-year">2022</div>
           <div className="parcours-card-logo">
             <img src="/img/mmi.png" alt="MMI" />
           </div>
-        </div>
-        <div className="parcours-card" style={{ '--card-bg': '#7ab8e8' }}>
-          <div className="parcours-card-top">
-            <span className="parcours-location">Loperhet (29)</span>
-            <strong className="parcours-name">Alternance</strong>
-            <p className="parcours-sub">Aviation civile</p>
-            <p className="parcours-desc">Développement d'application web React</p>
+          <div className="parcours-card-body">
+            <span className="parcours-location">Lannion · 22</span>
+            <strong className="parcours-name">BUT MMI</strong>
+            <p className="parcours-desc">Dev Web & Interactifs</p>
           </div>
+        </div>
+        <div className="parcours-card" style={{ '--card-accent': '#38bdf8' }}>
+          <div className="parcours-card-year">2024</div>
           <div className="parcours-card-logo">
             <img src="/img/dgac.png" alt="DGAC" />
+          </div>
+          <div className="parcours-card-body">
+            <span className="parcours-location">Loperhet · 29</span>
+            <strong className="parcours-name">Alternance</strong>
+            <p className="parcours-desc">React · Aviation civile</p>
           </div>
         </div>
       </div>

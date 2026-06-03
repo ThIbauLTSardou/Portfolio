@@ -6,7 +6,10 @@ export const projetsData = [
     petite_description: "Site de location de matériel de sport",
     paragraphe: "Lors de ma deuxième année en BUT MMI, j'ai réalisé en équipe de trois un site de location de matériel de fitness en ligne, ciblant un persona précis. Le projet comprenait une étude marketing, la conception de la maquette sur Figma, puis le développement complet avec une base de données SQL.",
     langage: ["JS", "NodeJS", "ExpressJs", "MySQL"],
-    outils: ["Trello", "VScode", "Figma", "Github", "PHPmyadmin"]
+    outils: ["Trello", "VScode", "Figma", "Github", "PHPmyadmin"],
+    role: "Développeur fullstack & designer UI",
+    role_details: ["Conception de la base de données SQL", "Développement du back-end avec Node.js & Express", "Intégration des maquettes Figma en front-end", "Gestion des sessions utilisateurs et du panier"],
+    apport: ["Maîtrise du cycle complet d'un projet web", "Première expérience de travail en équipe avec Git", "Comprendre les contraintes d'un back-end réel vs maquette", "Structurer une BDD relationnelle pour un e-commerce"],
   },
   {
     id: 2,
@@ -15,7 +18,10 @@ export const projetsData = [
     petite_description: "CRM boosté à l'IA pour le BTP",
     paragraphe: "Ivy est un projet personnel que je développe avec l'objectif de le lancer en SaaS. C'est un CRM conçu pour les entreprises du BTP, boosté à l'IA. Il permet de générer des devis et factures à l'oral, d'automatiser les relances clients via l'IA, et d'interagir avec l'application directement sur WhatsApp pour faciliter le suivi de chantier.",
     langage: ["React", "NodeJS", "Supabase"],
-    outils: ["Figma", "VScode", "Github"]
+    outils: ["Figma", "VScode", "Github"],
+    role: "Fondateur & développeur solo",
+    role_details: ["Idéation et conception produit de A à Z", "Architecture technique complète (React, Supabase, IA)", "Design de l'interface sur Figma", "Intégration des APIs IA pour la génération de documents"],
+    apport: ["Comprendre les réalités du développement d'un SaaS", "Gérer seul un projet de bout en bout", "M'initier aux LLMs et à leur intégration dans une app", "Développer un sens produit orienté utilisateur métier"],
   },
   {
     id: 3,
@@ -24,7 +30,10 @@ export const projetsData = [
     petite_description: "Site de vente de confiseries",
     paragraphe: "Dans le cadre de notre formation, j'ai réalisé en équipe de trois un site de vente de confiseries en ligne, ciblant un persona précis. Le projet comprenait une étude marketing, la conception de la maquette sur Figma, puis le développement complet avec une base de données SQL.",
     langage: ["JS", "PHP", "MySQL"],
-    outils: ["VScode", "Figma", "Github", "PHPmyadmin", "Discord"]
+    outils: ["VScode", "Figma", "Github", "PHPmyadmin", "Discord"],
+    role: "Développeur front-end & intégrateur",
+    role_details: ["Intégration HTML/CSS/JS des maquettes Figma", "Développement des vues produits et du panier", "Liaison avec le back-end PHP/MySQL", "Mise en place du système de filtres produits"],
+    apport: ["Consolider mes bases en PHP et MySQL", "Apprendre à travailler avec un back-end sans framework", "Améliorer ma rigueur sur l'organisation du code en équipe", "Comprendre les enjeux d'une expérience d'achat en ligne"],
   },
   {
     id: 4,
@@ -33,8 +42,11 @@ export const projetsData = [
     petite_description: "Application facilitatrice d'état des lieux",
     paragraphe: "Dès ma première année de formation, j'ai participé sur mon temps libre au concours FabrikTaPépite, organisé en association avec Anticipa de Lannion. En équipe de cinq, nous avons conçu une application simplifiant la rédaction d'un état des lieux. Je me suis occupé de la maquette de l'application. Nous avons remporté le prix du meilleur prototype numérique.",
     langage: [],
-    outils: ["Figma"]
-  }
+    outils: ["Figma"],
+    role: "Designer UX/UI & chef de projet maquette",
+    role_details: ["Conception UX des parcours utilisateurs", "Création de l'ensemble de la maquette sur Figma", "Présentation du prototype au jury du concours", "Coordination du rendu visuel entre les membres"],
+    apport: ["Remporter mon premier prix dans un concours d'innovation", "Apprendre à pitcher un produit devant un jury", "Développer ma créativité sous contrainte de temps", "Comprendre l'importance du design centré utilisateur"],
+  },
 ];
 
 export const projetsGallery = [
@@ -45,7 +57,10 @@ export const projetsGallery = [
     petite_description: "Data visualisation",
     paragraphe: "Dans le cadre de ce projet, j'ai collaboré en groupe pour réaliser une datavisualisation illustrant l'évolution de l'inflation en France depuis 1991. L'objectif principal était de rendre l'expérience la plus interactive possible, en permettant à l'utilisateur d'explorer les données de manière intuitive et engageante.",
     langage: ["JS", "ChartJs", "Bulma"],
-    outils: ["VScode", "Figma", "Github", "Discord"]
+    outils: ["VScode", "Figma", "Github", "Discord"],
+    role: "Développeur front-end & dataviz",
+    role_details: ["Traitement et nettoyage des données économiques", "Intégration de Chart.js pour les visualisations interactives", "Développement des animations et interactions utilisateur", "Intégration du design avec Bulma"],
+    apport: ["Découvrir la data visualisation et ses contraintes", "Apprendre à rendre des données complexes lisibles", "Travailler avec des APIs et des jeux de données réels", "Renforcer mes compétences en JS vanilla"],
   },
   {
     id: 5,
@@ -54,7 +69,10 @@ export const projetsGallery = [
     petite_description: "Refonte fictive d'une landing page",
     paragraphe: "J'ai réalisé une refonte fictive de la landing page de Harman Kardon, en repensant l'identité visuelle et l'expérience utilisateur de la page d'accueil.",
     langage: ["JS"],
-    outils: ["Figma", "Pinterest"]
+    outils: ["Figma", "Pinterest"],
+    role: "Designer UI & développeur",
+    role_details: ["Analyse de l'identité visuelle existante de la marque", "Conception d'une nouvelle direction artistique sur Figma", "Développement de la landing page en JS", "Création d'animations pour valoriser le produit"],
+    apport: ["Apprendre à s'approprier l'univers d'une grande marque", "Travailler ma sensibilité au design premium", "Explorer les animations CSS et JS avancées", "Comprendre les codes visuels du secteur audio haut de gamme"],
   },
   {
     id: 6,
@@ -63,6 +81,9 @@ export const projetsGallery = [
     petite_description: "Accompagnement d'une entreprise sur 1 an",
     paragraphe: "En groupe de quatre, nous avons accompagné pendant un an une petite entreprise spécialisée dans le nettoyage de façades, toits et panneaux solaires par drones et robots. Nous avons pris en charge l'ensemble de sa stratégie marketing, sa communication, ainsi que la conception d'une maquette de son site web.",
     langage: ["JS"],
-    outils: ["Trello", "Drive", "Figma", "VScode", "Canva", "Pinterest"]
+    outils: ["Trello", "Drive", "Figma", "VScode", "Canva", "Pinterest"],
+    role: "Chef de projet communication & designer",
+    role_details: ["Pilotage de la stratégie de communication sur 1 an", "Création des supports visuels (réseaux, print, vidéo)", "Conception de la maquette du site web sur Figma", "Coordination de l'équipe et des livrables client"],
+    apport: ["Gérer une relation client réelle sur la durée", "Développer une vision stratégique de la communication", "Apprendre à adapter un message à une cible B2B", "Renforcer ma polyvalence entre design, marketing et dev"],
   },
 ];
