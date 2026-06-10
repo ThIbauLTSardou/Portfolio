@@ -82,53 +82,56 @@ export function Projects() {
 
   return (
     <>
-      <div>
-        {/* Section titre */}
+      <div className="projects_wrap">
+        {/* Section titre — sticky derrière les projets */}
         <section className="section_2" id="section_2">
           <div className="title" ref={titleRef}>
             <h1>Réalisations</h1>
           </div>
         </section>
 
-        {/* Projets principaux */}
-        <div className="liste_projet">
-          {projetsData.map((projet) => (
-            <div
-              key={projet.id}
-              className="projet"
-              onClick={() => setOpenId(projet.id)}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="img_projet">
-                <img
-                  className="image"
-                  src={`/img/${projet.id}.png`}
-                  alt={projet.nom}
-                />
-              </div>
-              <h2 className="nom_projet">{projet.nom}</h2>
-              <p>{projet.petite_description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Projets secondaires */}
-        <div className="projet_secondaire">
-          {projetsGallery.map((projet) => (
-            <div
-              key={projet.id}
-              className="content_secondaire"
-              onClick={() => setOpenId(projet.id)}
-              style={{ cursor: "pointer" }}
-            >
-              <a>
-                <h2>{projet.nom}</h2>
+        {/* Projets — passent par-dessus le titre au scroll */}
+        <div className="projects_over">
+          {/* Projets principaux */}
+          <div className="liste_projet">
+            {projetsData.map((projet) => (
+              <div
+                key={projet.id}
+                className="projet"
+                onClick={() => setOpenId(projet.id)}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="img_projet">
+                  <img
+                    className="image"
+                    src={`/img/${projet.id}.png`}
+                    alt={projet.nom}
+                  />
+                </div>
+                <h2 className="nom_projet">{projet.nom}</h2>
                 <p>{projet.petite_description}</p>
-                <p className="projet_secondaire_categorie">{projet.categorie}</p>
-              </a>
-              <span className="projet_secondaire_arrow">↗</span>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Projets secondaires */}
+          <div className="projet_secondaire">
+            {projetsGallery.map((projet) => (
+              <div
+                key={projet.id}
+                className="content_secondaire"
+                onClick={() => setOpenId(projet.id)}
+                style={{ cursor: "pointer" }}
+              >
+                <a>
+                  <h2>{projet.nom}</h2>
+                  <p>{projet.petite_description}</p>
+                  <p className="projet_secondaire_categorie">{projet.categorie}</p>
+                </a>
+                <span className="projet_secondaire_arrow">↗</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

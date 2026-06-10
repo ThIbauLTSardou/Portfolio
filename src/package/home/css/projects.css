@@ -1,4 +1,9 @@
-/* Section titre projets */
+/* Wrapper global projets */
+.projects_wrap {
+  position: relative;
+}
+
+/* Section titre projets — sticky, reste en dessous */
 .section_2 {
   height: 100vh;
   width: 100%;
@@ -8,9 +13,16 @@
   align-items: center;
   flex-direction: column;
   position: sticky;
-  top: 0px;
+  top: 0;
   z-index: 1;
   overflow: hidden;
+}
+
+/* Conteneur projets — passe par-dessus le titre */
+.projects_over {
+  position: relative;
+  z-index: 2;
+  background-color: var(--black);
 }
 
 .title {
