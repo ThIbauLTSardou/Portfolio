@@ -178,6 +178,8 @@ export function Header({ startCurtain }) {
             </div>
           </div>
         </div>
+
+        <h2 className="header_salut">Salut !</h2>
       </section>
     </>
   );

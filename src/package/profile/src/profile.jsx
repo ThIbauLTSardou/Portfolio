@@ -57,7 +57,6 @@ export function Profile() {
       <section className=" section_profil">
         <div className="profile_left_side">
           <div className="profile_title left_title">
-            <h1>Salut !</h1>
             <h3>Moi c'est <span className="tybo_name">...</span></h3>
           </div>
         </div>

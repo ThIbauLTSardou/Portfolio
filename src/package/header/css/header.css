@@ -62,6 +62,21 @@
     position: relative;
 }
 
+/* "Salut !" collé en bas du hero jaune */
+.header_salut {
+    position: absolute;
+    bottom: 0;
+    left: 10vw;
+    font-size: clamp(2.5rem, 10vw, 15rem);
+    font-weight: 900;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    line-height: 0.9;
+    margin: 0;
+    transform: translateY(8%);
+}
+
 .header_container{
    display: flex;
    justify-content: center;
@@ -178,6 +193,11 @@
   .header_container {
     width: 98vw;
     margin-top: 0;
+  }
+
+  .header_salut {
+    left: 5vw;
+    font-size: clamp(2.5rem, 16vw, 6rem);
   }
 
   .middle_svg_row {
