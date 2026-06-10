@@ -18,12 +18,12 @@
 
 body {
   background-color: var(--yellow);
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
