@@ -436,7 +436,7 @@
             height: clamp(220px, 80vw, 380px);
           }
           .vinyl-content-display {
-            top: 8%;
+            top: 22%;
             left: 50%;
             width: 88%;
             transform: translate(-50%, 0);
