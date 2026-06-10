@@ -82,11 +82,7 @@ export function Header({ startCurtain }) {
         { x: 60, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
       )
-      .fromTo(".header_salut",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.8, ease: "power2.out" },
-        "-=0.3"
-      );
+      ;
 
     gsap.to(".header_title", {
       yPercent: -800,
@@ -184,7 +180,6 @@ export function Header({ startCurtain }) {
           </div>
         </div>
 
-        <h2 className="header_salut">Salut !</h2>
       </section>
     </>
   );

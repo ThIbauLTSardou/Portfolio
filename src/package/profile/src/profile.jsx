@@ -13,6 +13,22 @@ export function Profile() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
+    // "Salut !" : fade in une fois, reste figé avec la section pinnée
+    gsap.fromTo(
+      ".header_salut",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".section_profil",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+
     // "Moi c'est" : simple apparition depuis le bas, reste en place
     gsap.fromTo(
       ".left_title",
@@ -57,6 +73,7 @@ export function Profile() {
   return (
    
       <section className=" section_profil">
+        <h2 className="header_salut">Salut !</h2>
         <div className="profile_left_side">
           <div className="profile_title left_title">
             <h3>Moi c'est <span className="tybo_name">...</span></h3>

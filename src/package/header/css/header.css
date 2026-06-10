@@ -62,18 +62,21 @@
     position: relative;
 }
 
-/* "Salut !" collé en bas du hero jaune */
+/* "Salut !" — dans section_profil, remonte dans la zone jaune du hero */
 .header_salut {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 10vw;
     font-size: clamp(2.5rem, 10vw, 15rem);
     font-weight: 900;
     font-family: 'Inter', system-ui, sans-serif;
     letter-spacing: -0.02em;
     color: var(--black);
-    line-height: 0.9;
+    line-height: 0.85;
     margin: 0;
+    transform: translateY(-85%);
+    z-index: 5;
+    opacity: 0;
 }
 
 .header_container{
