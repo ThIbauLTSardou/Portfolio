@@ -29,18 +29,6 @@ export function Profile() {
       },
     );
 
-    // "Salut !" : apparaît une fois quand la section profil arrive, ne repart pas
-    gsap.from(".header_salut", {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".section_profil",
-        start: "top 90%",
-        toggleActions: "play none none none",
-      },
-    });
 
     gsap.fromTo(
       ".pp_container",

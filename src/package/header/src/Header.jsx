@@ -81,6 +81,11 @@ export function Header({ startCurtain }) {
       .fromTo(".header_sidebar",
         { x: 60, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+      )
+      .fromTo(".header_salut",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        "-=0.3"
       );
 
     gsap.to(".header_title", {
