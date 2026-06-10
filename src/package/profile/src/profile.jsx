@@ -23,18 +23,18 @@ export function Profile() {
       invalidateOnRefresh: true,
     });
 
-    // "Salut !" : apparaît quand section_profil atteint le milieu de l'écran
+    // "Salut !" : opacity scrubée progressivement au scroll, reversible dans les deux sens
     gsap.fromTo(
       ".header_salut",
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 0.6,
-        ease: "power2.out",
+        ease: "none",
         scrollTrigger: {
           trigger: ".section_profil",
-          start: "top 50%",
-          toggleActions: "play none none none",
+          start: "top 80%",
+          end: "top 30%",
+          scrub: true,
           invalidateOnRefresh: true,
         },
       },
