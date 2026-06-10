@@ -7,8 +7,46 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ICON_BASE = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
-// line: 0-6 (0 et 6 = au-dessus/en-dessous des 5 lignes, 1-5 = sur une ligne)
-// fromDir: "top" ou "bottom" = direction d'arrivée au scroll
+// Fréquences basse (graves)
+const NOTES = [41.20, 46.25, 48.99, 55.00, 61.74, 65.41, 73.42, 82.41, 87.31, 92.50, 97.99, 110.00, 123.47, 130.81, 138.59];
+
+function playNote(freq) {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Oscillateur principal basse
+  const osc = ctx.createOscillator();
+  // Oscillateur harmonique pour épaissir le son
+  const osc2 = ctx.createOscillator();
+  const gain = ctx.createGain();
+  const gain2 = ctx.createGain();
+
+  // Filtre passe-bas pour arrondir le son basse
+  const filter = ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(800, ctx.currentTime);
+  filter.Q.value = 1;
+
+  osc.connect(filter);
+  osc2.connect(filter);
+  filter.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.type = "sawtooth";
+  osc2.type = "sine";
+  osc.frequency.setValueAtTime(freq, ctx.currentTime);
+  osc2.frequency.setValueAtTime(freq * 2, ctx.currentTime); // octave au-dessus
+
+  // Enveloppe basse : punch rapide, sustain court
+  gain.gain.setValueAtTime(0, ctx.currentTime);
+  gain.gain.linearRampToValueAtTime(0.55, ctx.currentTime + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+
+  osc.start(ctx.currentTime);
+  osc2.start(ctx.currentTime);
+  osc.stop(ctx.currentTime + 1.5);
+  osc2.stop(ctx.currentTime + 1.5);
+}
+
 const stack = [
   { name: "React",       icon: `${ICON_BASE}/react/react-original.svg`,           col: 3,  line: 2, fromDir: "top"    },
   { name: "HTML",        icon: `${ICON_BASE}/html5/html5-original.svg`,            col: 9,  line: 4, fromDir: "bottom" },
@@ -93,6 +131,7 @@ export function Skills() {
               key={item.name}
               className="skills_chip"
               ref={(el) => (chipRefs.current[i] = el)}
+              onMouseEnter={() => playNote(NOTES[i])}
               style={{
                 left: `${item.col}%`,
                 top: `${y}%`,
