@@ -176,7 +176,7 @@
 /* ── Header mobile ── */
 @media (max-width: 600px) {
   .header_container {
-    width: 95vw;
+    width: 98vw;
     margin-top: 0;
   }
 
@@ -186,21 +186,22 @@
 
   .middle_svg_row .casque_gauche,
   .middle_svg_row .casque_droit {
-    width: clamp(60px, 22vw, 120px);
+    width: clamp(50px, 18vw, 100px);
     transform: translateY(43%);
   }
 
   .middle_svg_row .svg {
-    max-width: 50vw;
+    max-width: 46vw;
+    flex-shrink: 1;
   }
 
   .header_title {
-    font-size: clamp(0.5rem, 4.5vw, 2rem);
+    font-size: clamp(0.4rem, 3.8vw, 1.6rem);
     white-space: nowrap;
     margin-top: -0.5rem;
   }
 
   .header_subtitle {
-    font-size: clamp(0.5rem, 2.8vw, 0.8rem);
+    font-size: clamp(0.4rem, 2.4vw, 0.75rem);
   }
 }
