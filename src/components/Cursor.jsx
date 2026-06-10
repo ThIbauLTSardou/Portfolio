@@ -1,12 +1,19 @@
 import { useEffect, useRef } from "react";
 
+const isTouchDevice =
+  typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+
 export function Cursor() {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
 
   useEffect(() => {
+    if (isTouchDevice) return;
+
     const dot = dotRef.current;
     const ring = ringRef.current;
+    if (!dot || !ring) return;
+
     let ringX = window.innerWidth / 2;
     let ringY = window.innerHeight / 2;
     let dotX = ringX;
@@ -60,9 +67,7 @@ export function Cursor() {
     };
   }, []);
 
-  if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-    return null;
-  }
+  if (isTouchDevice) return null;
 
   return (
     <>
