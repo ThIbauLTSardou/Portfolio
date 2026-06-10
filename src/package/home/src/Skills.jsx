@@ -7,24 +7,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ICON_BASE = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
-// position au milieu du scroll (en %) + direction de traversée
+// line: 0-6 (0 et 6 = au-dessus/en-dessous des 5 lignes, 1-5 = sur une ligne)
+// fromDir: "top" ou "bottom" = direction d'arrivée au scroll
 const stack = [
-  { name: "React",       icon: `${ICON_BASE}/react/react-original.svg`,          midX: 15,  midY: 18,  dx: 130, dy: 25  },
-  { name: "HTML",        icon: `${ICON_BASE}/html5/html5-original.svg`,           midX: 70,  midY: 8,   dx: -120, dy: 40 },
-  { name: "CSS",         icon: `${ICON_BASE}/css3/css3-original.svg`,             midX: 40,  midY: 30,  dx: 110, dy: -30 },
-  { name: "JavaScript",  icon: `${ICON_BASE}/javascript/javascript-original.svg`, midX: 60,  midY: 72,  dx: -130, dy: -20},
-  { name: "Node.js",     icon: `${ICON_BASE}/nodejs/nodejs-original.svg`,         midX: 10,  midY: 55,  dx: 120, dy: -40 },
-  { name: "Express",     icon: `${ICON_BASE}/express/express-original.svg`,       midX: 55,  midY: 50,  dx: -110, dy: 50 },
-  { name: "PHP",         icon: `${ICON_BASE}/php/php-original.svg`,               midX: 25,  midY: 80,  dx: 100, dy: -60 },
-  { name: "Git",         icon: `${ICON_BASE}/git/git-original.svg`,               midX: 75,  midY: 35,  dx: -120, dy: 30 },
-  { name: "Figma",       icon: `${ICON_BASE}/figma/figma-original.svg`,           midX: 45,  midY: 88,  dx: 90,  dy: -50 },
-  { name: "VS Code",     icon: `${ICON_BASE}/vscode/vscode-original.svg`,         midX: 80,  midY: 60,  dx: -100, dy: -35},
-  { name: "Vite",        icon: `${ICON_BASE}/vitejs/vitejs-original.svg`,         midX: 20,  midY: 42,  dx: 115, dy: 55  },
-  { name: "Supabase",    icon: `${ICON_BASE}/supabase/supabase-original.svg`,     midX: 65,  midY: 22,  dx: -95, dy: 60  },
-  { name: "Claude Code", icon: "https://avatars.githubusercontent.com/u/76263028?s=48", midX: 35, midY: 62, dx: 105, dy: -45 },
-  { name: "SCSS",        icon: `${ICON_BASE}/sass/sass-original.svg`,              midX: 50,  midY: 40,  dx: -110, dy: 70 },
-  { name: "Bulma",       icon: `${ICON_BASE}/bulma/bulma-plain.svg`,               midX: 18,  midY: 68,  dx: 115, dy: -55 },
+  { name: "React",       icon: `${ICON_BASE}/react/react-original.svg`,           col: 4,  line: 1, fromDir: "top"    },
+  { name: "HTML",        icon: `${ICON_BASE}/html5/html5-original.svg`,            col: 8,  line: 3, fromDir: "bottom" },
+  { name: "CSS",         icon: `${ICON_BASE}/css3/css3-original.svg`,              col: 12, line: 5, fromDir: "top"    },
+  { name: "JavaScript",  icon: `${ICON_BASE}/javascript/javascript-original.svg`,  col: 16, line: 2, fromDir: "bottom" },
+  { name: "Node.js",     icon: `${ICON_BASE}/nodejs/nodejs-original.svg`,          col: 20, line: 4, fromDir: "top"    },
+  { name: "Express",     icon: `${ICON_BASE}/express/express-original.svg`,        col: 24, line: 1, fromDir: "bottom" },
+  { name: "PHP",         icon: `${ICON_BASE}/php/php-original.svg`,                col: 28, line: 3, fromDir: "top"    },
+  { name: "Git",         icon: `${ICON_BASE}/git/git-original.svg`,                col: 32, line: 5, fromDir: "bottom" },
+  { name: "Figma",       icon: `${ICON_BASE}/figma/figma-original.svg`,            col: 36, line: 2, fromDir: "top"    },
+  { name: "VS Code",     icon: `${ICON_BASE}/vscode/vscode-original.svg`,          col: 40, line: 4, fromDir: "bottom" },
+  { name: "Vite",        icon: `${ICON_BASE}/vitejs/vitejs-original.svg`,          col: 44, line: 1, fromDir: "top"    },
+  { name: "Supabase",    icon: `${ICON_BASE}/supabase/supabase-original.svg`,      col: 48, line: 3, fromDir: "bottom" },
+  { name: "Claude Code", icon: "https://avatars.githubusercontent.com/u/76263028?s=48", col: 52, line: 5, fromDir: "top" },
+  { name: "SCSS",        icon: `${ICON_BASE}/sass/sass-original.svg`,              col: 56, line: 2, fromDir: "bottom" },
+  { name: "Bulma",       icon: `${ICON_BASE}/bulma/bulma-plain.svg`,               col: 60, line: 4, fromDir: "top"    },
 ];
+
+// 5 lignes de portée : positions en % vertical dans la zone centrale
+const STAFF_TOP    = 30; // % depuis le haut de la section
+const STAFF_BOTTOM = 70;
+const LINE_COUNT   = 5;
+
+function getLineY(line) {
+  // line 1 = première ligne du haut, line 5 = dernière
+  const spacing = (STAFF_BOTTOM - STAFF_TOP) / (LINE_COUNT - 1);
+  return STAFF_TOP + (line - 1) * spacing;
+}
 
 export function Skills() {
   const sectionRef = useRef(null);
@@ -34,21 +46,21 @@ export function Skills() {
     const ctx = gsap.context(() => {
       chipRefs.current.forEach((chip, i) => {
         if (!chip) return;
-        const { midX, midY, dx, dy } = stack[i];
+        const { fromDir } = stack[i];
+        const offscreen = fromDir === "top" ? "-120vh" : "120vh";
 
-        // fromX/Y = position au début du scroll (avant), toX/Y = après
         gsap.fromTo(
           chip,
-          { left: `${midX - dx / 2}%`, top: `${midY - dy / 2}%` },
+          { y: offscreen, opacity: 0 },
           {
-            left: `${midX + dx / 2}%`,
-            top:  `${midY + dy / 2}%`,
+            y: 0,
+            opacity: 1,
             ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -61,25 +73,40 @@ export function Skills() {
   return (
     <section className="section_skills" ref={sectionRef}>
       <div className="skills_label">Stack technique</div>
-      <div className="skills_field">
-        {stack.map((item, i) => (
+
+      {/* Portée musicale */}
+      <div className="staff_wrap">
+        {Array.from({ length: LINE_COUNT }).map((_, i) => (
           <div
-            key={item.name}
-            className="skills_chip"
-            ref={(el) => (chipRefs.current[i] = el)}
-            style={{ left: `${item.midX - item.dx / 2}%`, top: `${item.midY - item.dy / 2}%`, '--i': i }}
-          >
-            <div className="skills_chip_eq">
-              <span className="skills_chip_bar" style={{'--d':'0s'}} />
-              <span className="skills_chip_bar" style={{'--d':'0.2s'}} />
-              <span className="skills_chip_bar" style={{'--d':'0.1s'}} />
-              <span className="skills_chip_bar" style={{'--d':'0.3s'}} />
-              <span className="skills_chip_bar" style={{'--d':'0.15s'}} />
-            </div>
-            <img src={item.icon} alt={item.name} className="skills_chip_icon" />
-            <span className="skills_chip_tooltip">{item.name}</span>
-          </div>
+            key={i}
+            className="staff_line"
+            style={{ top: `${getLineY(i + 1)}%` }}
+          />
         ))}
+
+        {/* Clé de sol décorative */}
+        <div className="staff_clef">𝄞</div>
+
+        {/* Chips posées sur les lignes */}
+        {stack.map((item, i) => {
+          const y = getLineY(item.line);
+          return (
+            <div
+              key={item.name}
+              className="skills_chip"
+              ref={(el) => (chipRefs.current[i] = el)}
+              style={{
+                left: `${item.col}%`,
+                top: `${y}%`,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <img src={item.icon} alt={item.name} className="skills_chip_icon" />
+              <div className="skills_chip_stem" />
+              <span className="skills_chip_tooltip">{item.name}</span>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

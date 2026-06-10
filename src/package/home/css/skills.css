@@ -22,105 +22,89 @@
   mix-blend-mode: difference;
 }
 
-/* Conteneur positionné au centre, les chips volent autour */
-.skills_field {
+/* ── Portée ── */
+.staff_wrap {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-@keyframes eq-bar {
-  0%, 100% { transform: scaleY(0.2); }
-  50%       { transform: scaleY(1);   }
+.staff_line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(254, 215, 60, 0.2);
+  transform: translateY(-50%);
 }
 
+.staff_clef {
+  position: absolute;
+  left: 1.5%;
+  top: 50%;
+  transform: translateY(-62%);
+  font-size: clamp(4rem, 8vw, 9rem);
+  color: rgba(254, 215, 60, 0.35);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Chips (notes) ── */
 .skills_chip {
   position: absolute;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  width: clamp(54px, 7vw, 90px);
-  height: clamp(54px, 7vw, 90px);
+  width: clamp(36px, 5vw, 64px);
+  height: clamp(36px, 5vw, 64px);
   border-radius: 50%;
-  background: var(--black);
-  box-shadow: 0 0 0 3px var(--yellow), 0 0 0 5px var(--black), 0 0 0 7px var(--yellow);
-  white-space: nowrap;
+  background: var(--yellow);
+  border: 2px solid var(--yellow);
   will-change: transform;
   cursor: default;
-  mix-blend-mode: difference;
 }
 
-/* Égaliseur */
-.skills_chip_eq {
+/* Queue de note vers le haut */
+.skills_chip_stem {
   position: absolute;
-  bottom: 14%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 35%;
-  opacity: 0.5;
-}
-
-.skills_chip_bar {
-  display: block;
-  width: clamp(2px, 0.3vw, 4px);
-  height: 100%;
+  bottom: 100%;
+  right: -1px;
+  width: 2px;
+  height: clamp(20px, 3vw, 40px);
   background: var(--yellow);
   border-radius: 1px;
-  transform-origin: bottom;
-  transform: scaleY(0.2);
-  animation: eq-bar calc(0.5s + var(--i, 0) * 0.07s) ease-in-out infinite alternate;
-  animation-delay: var(--d, 0s);
 }
 
 .skills_chip_icon {
-  width: clamp(26px, 3.5vw, 44px);
-  height: clamp(26px, 3.5vw, 44px);
+  width: 60%;
+  height: 60%;
   object-fit: contain;
-  flex-shrink: 0;
   position: relative;
   z-index: 3;
   filter: none;
 }
 
+/* ── Tooltip ── */
 .skills_chip_tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
   background: var(--yellow);
   color: var(--black);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.05em;
   white-space: nowrap;
-  padding: 0.3rem 0.7rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 4px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  mix-blend-mode: normal;
   z-index: 10;
 }
 
 .skills_chip:hover .skills_chip_tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-.skills_chip_name {
-  font-size: 0.55rem;
-  font-weight: 700;
-  color: var(--black);
-  white-space: nowrap;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 3;
 }
