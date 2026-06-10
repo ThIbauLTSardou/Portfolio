@@ -15,8 +15,9 @@ export function Profile() {
 
     gsap.fromTo(
       ".left_title",
-      { opacity: 0 },
+      { y: 100, opacity: 0 },
       {
+        y: isMobile ? -60 : -180,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
@@ -29,9 +30,9 @@ export function Profile() {
 
     gsap.fromTo(
       ".pp_container",
-      { y: 60, opacity: 0 },
+      { y: 100, opacity: 0 },
       {
-        y: 0,
+        y: isMobile ? -40 : -120,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
@@ -56,9 +57,7 @@ export function Profile() {
       <section className=" section_profil">
         <div className="profile_left_side">
           <div className="profile_title left_title">
-            <div className="salut_band">
-              <h1>Salut !</h1>
-            </div>
+            <h1>Salut !</h1>
             <h3>Moi c'est <span className="tybo_name">...</span></h3>
           </div>
         </div>
