@@ -31,6 +31,11 @@
   justify-content: center;
 }
 
+@keyframes eq-bar {
+  0%, 100% { transform: scaleY(0.2); }
+  50%       { transform: scaleY(1);   }
+}
+
 .skills_chip {
   position: absolute;
   display: flex;
@@ -41,12 +46,37 @@
   width: clamp(54px, 7vw, 90px);
   height: clamp(54px, 7vw, 90px);
   border-radius: 50%;
-  background: var(--yellow);
+  background: var(--black);
   box-shadow: 0 0 0 3px var(--yellow), 0 0 0 5px var(--black), 0 0 0 7px var(--yellow);
   white-space: nowrap;
   will-change: transform;
   cursor: default;
   mix-blend-mode: difference;
+}
+
+/* Égaliseur */
+.skills_chip_eq {
+  position: absolute;
+  bottom: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 35%;
+  opacity: 0.5;
+}
+
+.skills_chip_bar {
+  display: block;
+  width: clamp(2px, 0.3vw, 4px);
+  height: 100%;
+  background: var(--yellow);
+  border-radius: 1px;
+  transform-origin: bottom;
+  transform: scaleY(0.2);
+  animation: eq-bar calc(0.5s + var(--i, 0) * 0.07s) ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s);
 }
 
 .skills_chip_icon {

@@ -67,8 +67,15 @@ export function Skills() {
             key={item.name}
             className="skills_chip"
             ref={(el) => (chipRefs.current[i] = el)}
-            style={{ left: `${item.midX - item.dx / 2}%`, top: `${item.midY - item.dy / 2}%` }}
+            style={{ left: `${item.midX - item.dx / 2}%`, top: `${item.midY - item.dy / 2}%`, '--i': i }}
           >
+            <div className="skills_chip_eq">
+              <span className="skills_chip_bar" style={{'--d':'0s'}} />
+              <span className="skills_chip_bar" style={{'--d':'0.2s'}} />
+              <span className="skills_chip_bar" style={{'--d':'0.1s'}} />
+              <span className="skills_chip_bar" style={{'--d':'0.3s'}} />
+              <span className="skills_chip_bar" style={{'--d':'0.15s'}} />
+            </div>
             <img src={item.icon} alt={item.name} className="skills_chip_icon" />
             <span className="skills_chip_tooltip">{item.name}</span>
           </div>
