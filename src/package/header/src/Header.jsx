@@ -84,61 +84,41 @@ export function Header({ startCurtain }) {
       )
       ;
 
-    gsap.fromTo(".header_title",
-      { yPercent: 0 },
-      {
-        yPercent: -800,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".header",
-          start: "top top",
-          end: "bottom top",
-          scrub: 2,
-        },
-      }
-    );
+    gsap.to(".header_title", {
+      yPercent: -800,
+      scrollTrigger: {
+        start: "top top",
+        end: "bottom top",
+        scrub: 2,
+      },
+    });
 
-    gsap.fromTo(".casque_gauche",
-      { y: 0 },
-      {
-        y: "-800%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".header",
-          start: "top top",
-          end: "bottom top",
-          scrub: 2,
-        },
-      }
-    );
+    gsap.to(".casque_gauche", {
+      y: "-800%",
+      scrollTrigger: {
+        start: "top top",
+        end: "bottom top",
+        scrub: 2,
+      },
+    });
 
-    gsap.fromTo(".casque_droit",
-      { y: 0 },
-      {
-        y: "-800%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".header",
-          start: "top top",
-          end: "bottom top",
-          scrub: 2,
-        },
-      }
-    );
+    gsap.to(".casque_droit", {
+      y: "-800%",
+      scrollTrigger: {
+        start: "top top",
+        end: "bottom top",
+        scrub: 2,
+      },
+    });
 
-    gsap.fromTo(".svg",
-      { y: 0 },
-      {
-        y: "-700%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".header",
-          start: "top top",
-          end: "bottom top",
-          scrub: 2,
-        },
-      }
-    );
+    gsap.to(".svg", {
+      y: "-700%",
+      scrollTrigger: {
+        start: "top top",
+        end: "bottom top",
+        scrub: 2,
+      },
+    });
   }, [startCurtain]);
 
   return (
