@@ -58,8 +58,8 @@ export function Skills() {
             ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
+              start: "top 120%",
+              end: "top 20%",
               scrub: 1.5,
             },
           }
