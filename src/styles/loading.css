@@ -19,8 +19,8 @@
 /* ── Stack d'images ── */
 .ls-images-stack {
   position: absolute;
-  width: 520px;
-  height: 520px;
+  width: min(520px, 90vw);
+  height: min(520px, 90vw);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,8 +28,8 @@
 
 .ls-img {
   position: absolute;
-  width: 360px;
-  height: 260px;
+  width: min(360px, 75vw);
+  height: min(260px, 54vw);
   object-fit: cover;
   border-radius: 4px;
   opacity: 0;
@@ -83,4 +83,18 @@
   letter-spacing: 0.05em;
   white-space: nowrap;
   z-index: 3;
+}
+
+@media (max-width: 600px) {
+  .ls-title {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+  }
+  .ls-counter {
+    left: auto;
+    top: auto;
+    bottom: -2rem;
+    right: 0;
+    transform: none;
+    font-size: 0.75rem;
+  }
 }

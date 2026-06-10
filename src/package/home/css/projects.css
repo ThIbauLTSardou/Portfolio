@@ -196,15 +196,24 @@
 }
 
 @media (max-width: 768px) {
+  .section_2 {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+  }
   .title {
-    padding: 30px 40px;
+    padding: 30px 20px;
+    width: 90%;
+    box-sizing: border-box;
   }
   .title h1 {
-    font-size: 12vw;
+    font-size: 11vw;
+    text-align: center;
   }
   .liste_projet {
     grid-template-columns: 1fr;
     padding: 2rem 0 0;
+    width: 100%;
   }
   .projet {
     width: 88%;

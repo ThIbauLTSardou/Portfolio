@@ -80,23 +80,36 @@
   .section_profil {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-top: 4vh;
+    height: 100vh;
+    overflow: hidden;
   }
-  .profile_left_side,
-  .profile_right_side {
+  .profile_left_side {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .profile_right_side {
+    display: none;
+  }
   .profile_title {
     margin-left: 0;
     text-align: center;
   }
+  .profile_title h1 {
+    font-size: clamp(2.5rem, 14vw, 6rem);
+  }
+  .profile_title h3 {
+    font-size: clamp(1.2rem, 7vw, 3rem);
+    margin-top: 0.75rem;
+    white-space: nowrap;
+  }
   .pp_container {
-    width: clamp(100px, 30vw, 180px);
-    height: clamp(100px, 30vw, 180px);
+    width: clamp(80px, 24vw, 140px);
+    height: clamp(80px, 24vw, 140px);
   }
 }

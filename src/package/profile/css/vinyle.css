@@ -390,6 +390,16 @@
           align-items: center;
         }
 
+        @media (max-width: 768px) {
+          .vinyl-wrapper {
+            left: 50%;
+          }
+          .vinyl-disk {
+            width: clamp(220px, 80vw, 380px);
+            height: clamp(220px, 80vw, 380px);
+          }
+        }
+
         .vinyl-label-top,
         .vinyl-label-bottom {
           color: var(--yellow);
@@ -421,11 +431,67 @@
           .vinyl-wrapper {
             left: 50%;
           }
+          .vinyl-disk {
+            width: clamp(220px, 80vw, 380px);
+            height: clamp(220px, 80vw, 380px);
+          }
           .vinyl-content-display {
-            top: 12%;
+            top: 8%;
             left: 50%;
-            width: 85%;
+            width: 88%;
             transform: translate(-50%, 0);
+          }
+          .vinyl-label-top,
+          .vinyl-label-bottom {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+          }
+          .parcours-cards {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          .parcours-card {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+          }
+          .parcours-card::before {
+            top: 0;
+            left: 0;
+            right: auto;
+            bottom: 0;
+            width: 3px;
+            height: 100%;
+            border-radius: 16px 0 0 16px;
+          }
+          .parcours-card-year {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+          }
+          .parcours-card-logo {
+            width: 50px;
+            height: 44px;
+            padding: 0.4rem;
+            flex-shrink: 0;
+          }
+          .parcours-card-body {
+            align-items: flex-start;
+            text-align: left;
+          }
+          .apropos-stats {
+            gap: 1.5rem;
+          }
+          .apropos-stat-num {
+            font-size: clamp(1.4rem, 6vw, 2.5rem);
+          }
+          .word-outline,
+          .word-fill {
+            font-size: clamp(1.8rem, 8vw, 3.5rem);
+          }
+          .vinyl-section-title {
+            font-size: clamp(0.9rem, 4vw, 1.4rem);
+            margin-bottom: 0.75rem;
           }
         }
 

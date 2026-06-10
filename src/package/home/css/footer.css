@@ -122,6 +122,10 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 3rem 5vw 2rem;
+    gap: 2.5rem;
+  }
   .footer_top {
     flex-direction: column;
     gap: 2rem;
@@ -132,6 +136,17 @@
   }
   .footer_initiales {
     font-size: clamp(4rem, 20vw, 8rem);
+  }
+  .footer_right {
+    justify-content: flex-start;
+  }
+  .footer_logo {
+    width: clamp(120px, 40vw, 220px);
+    height: clamp(120px, 40vw, 220px);
+  }
+  .footer_email {
+    font-size: clamp(0.75rem, 3.5vw, 1rem);
+    gap: 0.5rem;
   }
   .footer_bottom {
     flex-direction: column;

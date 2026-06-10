@@ -38,11 +38,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: 90px;
-  height: 90px;
+  width: clamp(54px, 7vw, 90px);
+  height: clamp(54px, 7vw, 90px);
   border-radius: 50%;
   background: var(--yellow);
-  box-shadow: 0 0 0 4px var(--yellow), 0 0 0 6px var(--black), 0 0 0 8px var(--yellow);
+  box-shadow: 0 0 0 3px var(--yellow), 0 0 0 5px var(--black), 0 0 0 7px var(--yellow);
   white-space: nowrap;
   will-change: transform;
   cursor: default;
@@ -50,8 +50,8 @@
 }
 
 .skills_chip_icon {
-  width: 44px;
-  height: 44px;
+  width: clamp(26px, 3.5vw, 44px);
+  height: clamp(26px, 3.5vw, 44px);
   object-fit: contain;
   flex-shrink: 0;
   position: relative;

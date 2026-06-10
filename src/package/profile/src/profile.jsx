@@ -46,7 +46,7 @@ export function Profile() {
     ScrollTrigger.create({
       trigger: ".section_profil",
       start: "top 20%",
-      end: isMobile ? "+=150%" : "+=280%",
+      end: isMobile ? "+=220%" : "+=280%",
       pin: true,
       pinSpacing: true,
     });
