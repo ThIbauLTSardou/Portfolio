@@ -75,6 +75,7 @@
     line-height: 0.9;
     margin: 0;
     transform: translateY(8%);
+    opacity: 0;
 }
 
 .header_container{

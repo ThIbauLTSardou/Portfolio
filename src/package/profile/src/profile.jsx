@@ -13,11 +13,12 @@ export function Profile() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
+    // "Moi c'est" : simple apparition depuis le bas, reste en place
     gsap.fromTo(
       ".left_title",
-      { y: 100, opacity: 0 },
+      { y: 60, opacity: 0 },
       {
-        y: isMobile ? -60 : -180,
+        y: 0,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
@@ -28,11 +29,27 @@ export function Profile() {
       },
     );
 
+    // "Salut !" dans le hero : apparaît en remontant depuis le bas au scroll
+    gsap.fromTo(
+      ".header_salut",
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".section_profil",
+          start: "top 95%",
+          end: "top 70%",
+          scrub: 1,
+        },
+      },
+    );
+
     gsap.fromTo(
       ".pp_container",
-      { y: 100, opacity: 0 },
+      { y: 60, opacity: 0 },
       {
-        y: isMobile ? -40 : -120,
+        y: 0,
         opacity: 1,
         scrollTrigger: {
           trigger: ".section_profil",
