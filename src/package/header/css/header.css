@@ -220,7 +220,7 @@
   .header_title {
     font-size: clamp(0.4rem, 3.8vw, 1.6rem);
     white-space: nowrap;
-    margin-top: -0.5rem;
+    margin-top: 1.2rem;
   }
 
   .header_subtitle {
