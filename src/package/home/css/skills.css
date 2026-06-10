@@ -26,8 +26,6 @@
 .staff_wrap {
   position: absolute;
   inset: 0;
-  width: 120%;
-  left: -5%;
 }
 
 .staff_line {
