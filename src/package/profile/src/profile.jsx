@@ -13,7 +13,7 @@ export function Profile() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
-    // "Salut !" : fade in une fois, reste figé avec la section pinnée
+    // "Salut !" : fade in quand la section profil arrive au milieu de l'écran
     gsap.fromTo(
       ".header_salut",
       { opacity: 0 },
@@ -23,7 +23,7 @@ export function Profile() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".section_profil",
-          start: "top 80%",
+          start: "top 50%",
           toggleActions: "play none none none",
         },
       },
