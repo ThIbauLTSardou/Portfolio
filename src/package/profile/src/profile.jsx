@@ -29,21 +29,18 @@ export function Profile() {
       },
     );
 
-    // "Salut !" dans le hero : apparaît en remontant depuis le bas au scroll
-    gsap.fromTo(
-      ".header_salut",
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        scrollTrigger: {
-          trigger: ".section_profil",
-          start: "top 95%",
-          end: "top 70%",
-          scrub: 1,
-        },
+    // "Salut !" : apparaît une fois quand la section profil arrive, ne repart pas
+    gsap.from(".header_salut", {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".section_profil",
+        start: "top 90%",
+        toggleActions: "play none none none",
       },
-    );
+    });
 
     gsap.fromTo(
       ".pp_container",
