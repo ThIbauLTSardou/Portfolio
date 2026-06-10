@@ -83,8 +83,8 @@ export function Header({ startCurtain }) {
         { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
       )
       .fromTo(".header_salut",
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, ease: "power2.out" },
         "-=0.3"
       );
 
