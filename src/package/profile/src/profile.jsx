@@ -13,23 +13,34 @@ export function Profile() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
-    // "Salut !" : fade progressif lié au scroll, réversible
+    // Pin en premier pour que les autres ScrollTriggers se calculent après
+    ScrollTrigger.create({
+      trigger: ".section_profil",
+      start: "top 20%",
+      end: isMobile ? "+=220%" : "+=280%",
+      pin: true,
+      pinSpacing: true,
+      invalidateOnRefresh: true,
+    });
+
+    // "Salut !" : apparaît quand section_profil atteint le milieu de l'écran
     gsap.fromTo(
       ".header_salut",
       { opacity: 0 },
       {
         opacity: 1,
-        ease: "none",
+        duration: 0.6,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: ".section_profil",
-          start: "top 80%",
-          end: "top 20%",
-          scrub: 1.5,
+          start: "top 50%",
+          toggleActions: "play none none none",
+          invalidateOnRefresh: true,
         },
       },
     );
 
-    // "Moi c'est" : simple apparition depuis le bas, reste en place
+    // "Moi c'est" : apparition depuis le bas
     gsap.fromTo(
       ".left_title",
       { y: 60, opacity: 0 },
@@ -41,10 +52,10 @@ export function Profile() {
           start: "top 80%",
           end: "top 40%",
           scrub: 1,
+          invalidateOnRefresh: true,
         },
       },
     );
-
 
     gsap.fromTo(
       ".pp_container",
@@ -57,17 +68,10 @@ export function Profile() {
           start: "top 80%",
           end: "top 40%",
           scrub: 1,
+          invalidateOnRefresh: true,
         },
       },
     );
-
-    ScrollTrigger.create({
-      trigger: ".section_profil",
-      start: "top 20%",
-      end: isMobile ? "+=220%" : "+=280%",
-      pin: true,
-      pinSpacing: true,
-    });
   }, []);
 
   return (
