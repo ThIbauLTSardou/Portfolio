@@ -13,18 +13,18 @@ export function Profile() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
-    // "Salut !" : fade in quand la section profil arrive au milieu de l'écran
+    // "Salut !" : fade progressif lié au scroll, réversible
     gsap.fromTo(
       ".header_salut",
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 0.6,
-        ease: "power2.out",
+        ease: "none",
         scrollTrigger: {
           trigger: ".section_profil",
-          start: "top 50%",
-          toggleActions: "play none none none",
+          start: "top 80%",
+          end: "top 20%",
+          scrub: 1.5,
         },
       },
     );
