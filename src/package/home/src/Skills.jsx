@@ -12,30 +12,28 @@ const ICON_BASE = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 const stack = [
   { name: "React",       icon: `${ICON_BASE}/react/react-original.svg`,           col: 4,  line: 1, fromDir: "top"    },
   { name: "HTML",        icon: `${ICON_BASE}/html5/html5-original.svg`,            col: 8,  line: 3, fromDir: "bottom" },
-  { name: "CSS",         icon: `${ICON_BASE}/css3/css3-original.svg`,              col: 12, line: 5, fromDir: "top"    },
-  { name: "JavaScript",  icon: `${ICON_BASE}/javascript/javascript-original.svg`,  col: 16, line: 2, fromDir: "bottom" },
-  { name: "Node.js",     icon: `${ICON_BASE}/nodejs/nodejs-original.svg`,          col: 20, line: 4, fromDir: "top"    },
-  { name: "Express",     icon: `${ICON_BASE}/express/express-original.svg`,        col: 24, line: 1, fromDir: "bottom" },
-  { name: "PHP",         icon: `${ICON_BASE}/php/php-original.svg`,                col: 28, line: 3, fromDir: "top"    },
-  { name: "Git",         icon: `${ICON_BASE}/git/git-original.svg`,                col: 32, line: 5, fromDir: "bottom" },
-  { name: "Figma",       icon: `${ICON_BASE}/figma/figma-original.svg`,            col: 36, line: 2, fromDir: "top"    },
-  { name: "VS Code",     icon: `${ICON_BASE}/vscode/vscode-original.svg`,          col: 40, line: 4, fromDir: "bottom" },
-  { name: "Vite",        icon: `${ICON_BASE}/vitejs/vitejs-original.svg`,          col: 44, line: 1, fromDir: "top"    },
-  { name: "Supabase",    icon: `${ICON_BASE}/supabase/supabase-original.svg`,      col: 48, line: 3, fromDir: "bottom" },
-  { name: "Claude Code", icon: "https://avatars.githubusercontent.com/u/76263028?s=48", col: 52, line: 5, fromDir: "top" },
-  { name: "SCSS",        icon: `${ICON_BASE}/sass/sass-original.svg`,              col: 56, line: 2, fromDir: "bottom" },
-  { name: "Bulma",       icon: `${ICON_BASE}/bulma/bulma-plain.svg`,               col: 60, line: 4, fromDir: "top"    },
+  { name: "CSS",         icon: `${ICON_BASE}/css3/css3-original.svg`,              col: 12, line: 2, fromDir: "top"    },
+  { name: "JavaScript",  icon: `${ICON_BASE}/javascript/javascript-original.svg`,  col: 16, line: 4, fromDir: "bottom" },
+  { name: "Node.js",     icon: `${ICON_BASE}/nodejs/nodejs-original.svg`,          col: 20, line: 1, fromDir: "top"    },
+  { name: "Express",     icon: `${ICON_BASE}/express/express-original.svg`,        col: 24, line: 3, fromDir: "bottom" },
+  { name: "PHP",         icon: `${ICON_BASE}/php/php-original.svg`,                col: 28, line: 2, fromDir: "top"    },
+  { name: "Git",         icon: `${ICON_BASE}/git/git-original.svg`,                col: 32, line: 4, fromDir: "bottom" },
+  { name: "Figma",       icon: `${ICON_BASE}/figma/figma-original.svg`,            col: 36, line: 1, fromDir: "top"    },
+  { name: "VS Code",     icon: `${ICON_BASE}/vscode/vscode-original.svg`,          col: 40, line: 3, fromDir: "bottom" },
+  { name: "Vite",        icon: `${ICON_BASE}/vitejs/vitejs-original.svg`,          col: 44, line: 2, fromDir: "top"    },
+  { name: "Supabase",    icon: `${ICON_BASE}/supabase/supabase-original.svg`,      col: 48, line: 4, fromDir: "bottom" },
+  { name: "Claude Code", icon: "https://avatars.githubusercontent.com/u/76263028?s=48", col: 52, line: 1, fromDir: "top" },
+  { name: "SCSS",        icon: `${ICON_BASE}/sass/sass-original.svg`,              col: 56, line: 3, fromDir: "bottom" },
+  { name: "Bulma",       icon: `${ICON_BASE}/bulma/bulma-plain.svg`,               col: 60, line: 2, fromDir: "top"    },
 ];
 
-// 5 lignes de portée : positions en % vertical dans la zone centrale
-const STAFF_TOP    = 30; // % depuis le haut de la section
-const STAFF_BOTTOM = 70;
-const LINE_COUNT   = 5;
+// 4 lignes : 2 au-dessus du titre (centré à 50%), 2 en dessous
+// On place les lignes à intervalles fixes autour du centre
+const LINES_Y = [22, 37, 63, 78]; // % depuis le haut
 
 function getLineY(line) {
-  // line 1 = première ligne du haut, line 5 = dernière
-  const spacing = (STAFF_BOTTOM - STAFF_TOP) / (LINE_COUNT - 1);
-  return STAFF_TOP + (line - 1) * spacing;
+  // line 1-4 mapped sur LINES_Y
+  return LINES_Y[line - 1];
 }
 
 export function Skills() {
@@ -76,7 +74,7 @@ export function Skills() {
 
       {/* Portée musicale */}
       <div className="staff_wrap">
-        {Array.from({ length: LINE_COUNT }).map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
             className="staff_line"
