@@ -86,37 +86,45 @@ export function Header({ startCurtain }) {
 
     gsap.to(".header_title", {
       yPercent: -800,
+      ease: "none",
       scrollTrigger: {
+        trigger: ".header",
         start: "top top",
         end: "bottom top",
-        scrub: 2,
+        scrub: true,
       },
     });
 
     gsap.to(".casque_gauche", {
       y: "-800%",
+      ease: "none",
       scrollTrigger: {
+        trigger: ".header",
         start: "top top",
         end: "bottom top",
-        scrub: 2,
+        scrub: true,
       },
     });
 
     gsap.to(".casque_droit", {
       y: "-800%",
+      ease: "none",
       scrollTrigger: {
+        trigger: ".header",
         start: "top top",
         end: "bottom top",
-        scrub: 2,
+        scrub: true,
       },
     });
 
     gsap.to(".svg", {
       y: "-700%",
+      ease: "none",
       scrollTrigger: {
+        trigger: ".header",
         start: "top top",
         end: "bottom top",
-        scrub: 2,
+        scrub: true,
       },
     });
   }, [startCurtain]);
